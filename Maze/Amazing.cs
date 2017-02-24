@@ -10,7 +10,7 @@ namespace Maze
 
         public static void Main(string[] args) 
         {
-            Doit(int.Parse(args[0]),int.Parse(args[1]));
+            CreateMaze(int.Parse(args[0]),int.Parse(args[1]));
             Console.WriteLine(Result);
         }
 
@@ -39,28 +39,26 @@ namespace Maze
             _target = lineno;
         }
 
-        public static void Doit(int horizontal, int vertical) 
+        public static void CreateMaze(int horizontal, int vertical) 
         {
             Clear();
             Print("Amazing - Copyright by Creative Computing, Morristown, NJ");
             Println();
 
-            int h = horizontal;
-            int v = vertical;
-            if (h == 1 || v == 1) return;
+            if (horizontal == 1 || vertical == 1) return;
 
-            int[,] wArray = new int[h + 1,v + 1];
+            var wArray = new int[horizontal + 1,vertical + 1];
 		
 
-            int[,] vArray = new int[h + 1,v + 1];
+            var vArray = new int[horizontal + 1,vertical + 1];
 		
 
-            int q = 0;
-            int z = 0;
-            int x = Rnd(h);
+            var q = 0;
+            var z = 0;
+            var x = Rnd(horizontal);
 
             // 130:170
-            for (int i = 1; i <= h; i++) 
+            for (var i = 1; i <= horizontal; i++) 
             {
                 if (i == x)
                     Print(":  ");
@@ -86,13 +84,13 @@ namespace Maze
                 switch (_target)  
                 {
                     case 210:
-                        if (r != h)
+                        if (r != horizontal)
                             Goto(250);
                         else
                             Goto(220);
                         continue;
                     case 220:
-                        if (s != v)
+                        if (s != vertical)
                             Goto(240);
                         else
                             Goto(230);
@@ -142,7 +140,7 @@ namespace Maze
                             Goto(310);
                         continue;
                     case 310:
-                        if (r == h)
+                        if (r == horizontal)
                             Goto(350);
                         else
                             Goto(320);
@@ -168,7 +166,7 @@ namespace Maze
                             Goto(350);
                         continue;
                     case 350:
-                        if (s != v)
+                        if (s != vertical)
                             Goto(380);
                         else
                             Goto(360);
@@ -216,7 +214,7 @@ namespace Maze
                             Goto(430);
                         continue;
                     case 430:
-                        if (r == h)
+                        if (r == horizontal)
                             Goto(530);
                         else
                             Goto(440);
@@ -228,7 +226,7 @@ namespace Maze
                             Goto(450);
                         continue;
                     case 450:
-                        if (s != v)
+                        if (s != vertical)
                             Goto(480);
                         else
                             Goto(460);
@@ -276,7 +274,7 @@ namespace Maze
                             Goto(530);
                         continue;
                     case 530:
-                        if (s != v)
+                        if (s != vertical)
                             Goto(560);
                         else
                             Goto(540);
@@ -325,7 +323,7 @@ namespace Maze
                             Goto(620);
                         continue;
                     case 620:
-                        if (r == h)
+                        if (r == horizontal)
                             Goto(720);
                         else
                             Goto(630);
@@ -337,7 +335,7 @@ namespace Maze
                             Goto(640);
                         continue;
                     case 640:
-                        if (s != v)
+                        if (s != vertical)
                             Goto(670);
                         else
                             Goto(650);
@@ -385,7 +383,7 @@ namespace Maze
                             Goto(720);
                         continue;
                     case 720:
-                        if (s != v)
+                        if (s != vertical)
                             Goto(750);
                         else
                             Goto(730);
@@ -422,7 +420,7 @@ namespace Maze
                         Goto(980);
                         continue;
                     case 790:
-                        if (r == h)
+                        if (r == horizontal)
                             Goto(880);
                         else
                             Goto(800);
@@ -434,7 +432,7 @@ namespace Maze
                             Goto(810);
                         continue;
                     case 810:
-                        if (s != v)
+                        if (s != vertical)
                             Goto(840);
                         else
                             Goto(820);
@@ -471,7 +469,7 @@ namespace Maze
                         Goto(1020);
                         continue;
                     case 880:
-                        if (s != v)
+                        if (s != vertical)
                             Goto(910);
                         else
                             Goto(890);
@@ -509,7 +507,7 @@ namespace Maze
                         Goto(960);
                         continue;
                     case 960:
-                        if (c == h * v + 1)
+                        if (c == horizontal * vertical + 1)
                             Goto(1200);
                         else
                             Goto(970);
@@ -529,7 +527,7 @@ namespace Maze
                     case 1000:
                         vArray[r,s - 1] = 1;
                         s--;
-                        if (c == h * v + 1)
+                        if (c == horizontal * vertical + 1)
                             Goto(1200);
                         else
                             Goto(1010);
@@ -562,7 +560,7 @@ namespace Maze
                         Goto(1070);
                         continue;
                     case 1070:
-                        if (c == h * v + 1)
+                        if (c == horizontal * vertical + 1)
                             Goto(1200);
                         else
                             Goto(1080);
@@ -594,7 +592,7 @@ namespace Maze
                         continue;
                     case 1130:
                         s++;
-                        if (c == v * h + 1)
+                        if (c == vertical * horizontal + 1)
                             Goto(1200);
                         else
                             Goto(1140);
@@ -635,11 +633,11 @@ namespace Maze
             }
 
             // 1200:
-            for (int j = 1; j <= v; j++) 
+            for (int j = 1; j <= vertical; j++) 
             {
                 Print("I");        // 1210
 
-                for (int i = 1; i <= h; i++) 
+                for (int i = 1; i <= horizontal; i++) 
                 {
                     if (vArray[i,j] >= 2)
                         Print("   ");  // 1240
@@ -650,7 +648,7 @@ namespace Maze
                 Print(" ");   // 1280
                 Println();
 
-                for (int i = 1; i <= h; i++) 
+                for (int i = 1; i <= horizontal; i++) 
                 {
                     if (vArray[i,j] == 0)
                         Print(":--");   // 1300, 1340
