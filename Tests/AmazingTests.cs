@@ -1,6 +1,6 @@
 using System;
-using System.IO;
 using NUnit.Framework;
+// ReSharper disable InconsistentNaming
 
 namespace Tests
 {
@@ -10,7 +10,7 @@ namespace Tests
 		[Test]
 		public void Seed0size15x20() 
 		{
-			String expected = @"Amazing - Copyright by Creative Computing, Morristown, NJ
+			const string expected = @"Amazing - Copyright by Creative Computing, Morristown, NJ
 :--:--:--:--:--:--:--:--:--:--:  :--:--:--:--:
 I                             I        I     I 
 :  :--:--:--:--:  :--:--:  :--:  :--:--:  :--:
@@ -63,7 +63,7 @@ I                 I  I     I     I           I
 		[Test]
 		public void Seed100size4x5() 
 		{
-			String expected = @"Amazing - Copyright by Creative Computing, Morristown, NJ
+			const string expected = @"Amazing - Copyright by Creative Computing, Morristown, NJ
 :--:--:--:  :
 I           I 
 :  :--:  :--:
