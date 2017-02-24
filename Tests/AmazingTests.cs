@@ -1,4 +1,5 @@
 using System;
+using Maze;
 using NUnit.Framework;
 // ReSharper disable InconsistentNaming
 
@@ -54,10 +55,10 @@ I                 I  I     I     I           I
 :--:--:--:--:--:--:--:--:--:--:--:  :--:--:--:
 ";
 
-			Amazing.random = new Random(0);
-			Amazing.doit(15, 20);
+			Amazing.Random = new Random(0);
+			Amazing.Doit(15, 20);
 
-			Assert.AreEqual(expected, Amazing.result, "Should have the maze that was expected");
+			Assert.AreEqual(expected, Amazing.Result, "Should have the maze that was expected");
 		}
 
 		[Test]
@@ -77,10 +78,10 @@ I        I  I
 :--:--:--:  :
 ";
 
-			Amazing.random = new Random(100);
-			Amazing.doit(4, 5);
+			Amazing.Random = new Random(100);
+			Amazing.Doit(4, 5);
 
-			Assert.AreEqual(expected, Amazing.result, "Should have the maze that was expected");
+			Assert.AreEqual(expected, Amazing.Result, "Should have the maze that was expected");
 		}
 	}
 }
