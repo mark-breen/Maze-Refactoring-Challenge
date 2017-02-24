@@ -44,5 +44,41 @@ namespace Tests
                 Approvals.Verify(Amazing.Result);
             }
         }
+
+        [TestFixture]
+        [UseReporter(typeof(DiffReporter))]
+        public class Seed_1973_Size_3_By_5
+        {
+            [SetUp]
+            public void SetUp()
+            {
+                Amazing.Random = new Random(1973);
+                Amazing.CreateMaze(3, 5);
+            }
+
+            [Test]
+            public void AssertThatMazeIsCorrect()
+            {
+                Approvals.Verify(Amazing.Result);
+            }
+        }
+
+        [TestFixture]
+        [UseReporter(typeof(DiffReporter))]
+        public class Seed_2017_Size_100_By_100
+        {
+            [SetUp]
+            public void SetUp()
+            {
+                Amazing.Random = new Random(2017);
+                Amazing.CreateMaze(100, 100);
+            }
+
+            [Test]
+            public void AssertThatMazeIsCorrect()
+            {
+                Approvals.Verify(Amazing.Result);
+            }
+        }
     }
 }
