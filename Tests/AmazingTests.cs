@@ -55,7 +55,7 @@ I                 I  I     I     I           I
 :--:--:--:--:--:--:--:--:--:--:--:  :--:--:--:
 ";
 
-			Amazing.Random = new Random(0);
+			Amazing.Random = new AmazingRandom(0);
 			Amazing.CreateMaze(15, 20);
 
 			Assert.AreEqual(expected, Amazing.Result, "Should have the maze that was expected");
@@ -78,7 +78,7 @@ I        I  I
 :--:--:--:  :
 ";
 
-			Amazing.Random = new Random(100);
+			Amazing.Random = new AmazingRandom(100);
 			Amazing.CreateMaze(4, 5);
 
 			Assert.AreEqual(expected, Amazing.Result, "Should have the maze that was expected");

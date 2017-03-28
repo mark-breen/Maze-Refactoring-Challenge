@@ -15,7 +15,7 @@ namespace Tests
             [SetUp]
             public void SetUp()
             {
-                Amazing.Random = new Random(0);
+                Amazing.Random = new AmazingRandom(0);
             }
 
             [Test]
@@ -32,7 +32,7 @@ namespace Tests
             [SetUp]
             public void SetUp()
             {
-                Amazing.Random = new Random(0);
+                Amazing.Random = new AmazingRandom(0);
                 Amazing.CreateMaze(0, 1);
             }
 
@@ -50,7 +50,7 @@ namespace Tests
             [SetUp]
             public void SetUp()
             {
-                Amazing.Random = new Random(0);
+                Amazing.Random = new AmazingRandom(0);
                 Amazing.CreateMaze(1, 0);
             }
 
@@ -68,7 +68,7 @@ namespace Tests
             [SetUp]
             public void SetUp()
             {
-                Amazing.Random = new Random(0);
+                Amazing.Random = new AmazingRandom(0);
                 Amazing.CreateMaze(1, 1);
             }
 
@@ -86,7 +86,7 @@ namespace Tests
             [SetUp]
             public void SetUp()
             {
-                Amazing.Random = new Random(0);
+                Amazing.Random = new AmazingRandom(0);
                 Amazing.CreateMaze(15, 20);
             }
 
@@ -104,7 +104,7 @@ namespace Tests
             [SetUp]
             public void SetUp()
             {
-                Amazing.Random = new Random(100);
+                Amazing.Random = new AmazingRandom(100);
                 Amazing.CreateMaze(4, 5);
             }
 
@@ -122,7 +122,7 @@ namespace Tests
             [SetUp]
             public void SetUp()
             {
-                Amazing.Random = new Random(1973);
+                Amazing.Random = new AmazingRandom(1973);
                 Amazing.CreateMaze(3, 5);
             }
 
@@ -140,7 +140,7 @@ namespace Tests
             [SetUp]
             public void SetUp()
             {
-                Amazing.Random = new Random(2017);
+                Amazing.Random = new AmazingRandom(2017);
                 Amazing.CreateMaze(100, 100);
             }
 

@@ -2,10 +2,31 @@ using System;
 
 namespace Maze
 {
+    public interface IRandom
+    {
+        int RandomIntFor(int count);
+    }
+
+    public class AmazingRandom : IRandom
+    {
+        private readonly Random _random;
+
+        public AmazingRandom(int seed)
+        {
+            _random = new Random(seed);
+        }
+
+        public int RandomIntFor(int count)
+        {
+            return (int)(count * _random.NextDouble()) + 1;
+        }
+    }
+
+
     public class Amazing
     {
         static int _target;      // where GOTO goes
-        public static Random Random = new Random(0);
+        public static IRandom Random = new AmazingRandom(0);
         public static string Result = "";
 
         public static void Main(string[] args) 
@@ -29,11 +50,6 @@ namespace Maze
             Result += text;
         }
 
-        public static int Rnd(int count) 
-        {
-            return (int) (count * Random.NextDouble()) + 1;
-        }
-
         public static void Goto(int lineno) 
         {
             _target = lineno;
@@ -55,7 +71,7 @@ namespace Maze
 
             var q = 0;
             var z = 0;
-            var x = Rnd(horizontal);
+            var x = Random.RandomIntFor(horizontal);
 
             // 130:170
             for (var i = 1; i <= horizontal; i++) 
@@ -152,7 +168,7 @@ namespace Maze
                             Goto(330);
                         continue;
                     case 330:
-                        x = Rnd(3);
+                        x = Random.RandomIntFor(3);
                         Goto(340);
                         continue;
                     case 340:
@@ -188,7 +204,7 @@ namespace Maze
                             Goto(390);
                         continue;
                     case 390:
-                        x = Rnd(3);
+                        x = Random.RandomIntFor(3);
                         Goto(400);
                         continue;
                     case 400:
@@ -202,7 +218,7 @@ namespace Maze
                             Goto(410);
                         continue;
                     case 410:
-                        x = Rnd(2);
+                        x = Random.RandomIntFor(2);
                         Goto(420);
                         continue;
                     case 420:
@@ -248,7 +264,7 @@ namespace Maze
                             Goto(490);
                         continue;
                     case 490:
-                        x = Rnd(3);
+                        x = Random.RandomIntFor(3);
                         Goto(500);
                         continue;
                     case 500:
@@ -262,7 +278,7 @@ namespace Maze
                             Goto(510);
                         continue;
                     case 510:
-                        x = Rnd(2);
+                        x = Random.RandomIntFor(2);
                         Goto(520);
                         continue;
                     case 520:
@@ -296,7 +312,7 @@ namespace Maze
                             Goto(570);
                         continue;
                     case 570:
-                        x = Rnd(2);
+                        x = Random.RandomIntFor(2);
                         Goto(580);
                         continue;
                     case 580:
@@ -357,7 +373,7 @@ namespace Maze
                             Goto(680);
                         continue;
                     case 680:
-                        x = Rnd(3);
+                        x = Random.RandomIntFor(3);
                         Goto(690);
                         continue;
                     case 690:
@@ -371,7 +387,7 @@ namespace Maze
                             Goto(700);
                         continue;
                     case 700:
-                        x = Rnd(2);
+                        x = Random.RandomIntFor(2);
                         Goto(710);
                         continue;
                     case 710:
@@ -405,7 +421,7 @@ namespace Maze
                             Goto(760);
                         continue;
                     case 760:
-                        x = Rnd(2);
+                        x = Random.RandomIntFor(2);
                         Goto(770);
                         continue;
                     case 770:
@@ -454,7 +470,7 @@ namespace Maze
                             Goto(850);
                         continue;
                     case 850:
-                        x = Rnd(2);
+                        x = Random.RandomIntFor(2);
                         Goto(860);
                         continue;
                     case 860:
