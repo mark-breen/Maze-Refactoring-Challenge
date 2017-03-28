@@ -10,6 +10,76 @@ namespace Tests
     public class GoldenMasterTests
     {
         [TestFixture]
+        public class Seed_0_Size_0_By_0
+        {
+            [SetUp]
+            public void SetUp()
+            {
+                Amazing.Random = new Random(0);
+            }
+
+            [Test]
+            public void AssertThatMazeIsCorrect()
+            {
+                Assert.Throws<IndexOutOfRangeException>(() => Amazing.CreateMaze(0, 0));
+            }
+        }
+
+        [TestFixture]
+        [UseReporter(typeof(DiffReporter))]
+        public class Seed_0_Size_0_By_1
+        {
+            [SetUp]
+            public void SetUp()
+            {
+                Amazing.Random = new Random(0);
+                Amazing.CreateMaze(0, 1);
+            }
+
+            [Test]
+            public void AssertThatMazeIsCorrect()
+            {
+                Approvals.Verify(Amazing.Result);
+            }
+        }
+
+        [TestFixture]
+        [UseReporter(typeof(DiffReporter))]
+        public class Seed_0_Size_1_By_0
+        {
+            [SetUp]
+            public void SetUp()
+            {
+                Amazing.Random = new Random(0);
+                Amazing.CreateMaze(1, 0);
+            }
+
+            [Test]
+            public void AssertThatMazeIsCorrect()
+            {
+                Approvals.Verify(Amazing.Result);
+            }
+        }
+
+        [TestFixture]
+        [UseReporter(typeof(DiffReporter))]
+        public class Seed_0_Size_1_By_1
+        {
+            [SetUp]
+            public void SetUp()
+            {
+                Amazing.Random = new Random(0);
+                Amazing.CreateMaze(1, 1);
+            }
+
+            [Test]
+            public void AssertThatMazeIsCorrect()
+            {
+                Approvals.Verify(Amazing.Result);
+            }
+        }
+
+        [TestFixture]
         [UseReporter(typeof(DiffReporter))]
         public class Seed_0_Size_15_By_20
         {
