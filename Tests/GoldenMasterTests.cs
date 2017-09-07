@@ -2,6 +2,7 @@
 using ApprovalTests;
 using ApprovalTests.Reporters;
 using Maze;
+using NSubstitute;
 using NUnit.Framework;
 // ReSharper disable InconsistentNaming
 
@@ -141,6 +142,28 @@ namespace Tests
             public void SetUp()
             {
                 Amazing.Random = new AmazingRandom(2017);
+                Amazing.CreateMaze(100, 100);
+            }
+
+            [Test]
+            public void AssertThatMazeIsCorrect()
+            {
+                Approvals.Verify(Amazing.Result);
+            }
+        }
+
+        [TestFixture]
+        [UseReporter(typeof(DiffReporter))]
+        public class Seed_2017_Size_100_By_100_Line182Coverage
+        {
+            [SetUp]
+            public void SetUp()
+            {
+                var mockRandom = Substitute.For<IRandom>();
+                mockRandom.RandomIntFor(100).Returns(50);
+                mockRandom.RandomIntFor(3).Returns(0);
+
+                Amazing.Random = mockRandom;
                 Amazing.CreateMaze(100, 100);
             }
 
