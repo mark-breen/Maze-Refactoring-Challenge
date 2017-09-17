@@ -173,5 +173,41 @@ namespace Tests
                 Approvals.Verify(Amazing.Result);
             }
         }
+
+        [TestFixture]
+        [UseReporter(typeof(DiffReporter))]
+        public class Seed_2023_Size_20_By_23
+        {
+            [SetUp]
+            public void SetUp()
+            {
+                Amazing.Random = new AmazingRandom(2023);
+                Amazing.CreateMaze(20, 23);
+            }
+
+            [Test]
+            public void AssertThatMazeIsCorrect()
+            {
+                Approvals.Verify(Amazing.Result);
+            }
+        }
+
+        [TestFixture]
+        [UseReporter(typeof(DiffReporter))]
+        public class Seed_2023_Size_23_By_20
+        {
+            [SetUp]
+            public void SetUp()
+            {
+                Amazing.Random = new AmazingRandom(2023);
+                Amazing.CreateMaze(23, 20);
+            }
+
+            [Test]
+            public void AssertThatMazeIsCorrect()
+            {
+                Approvals.Verify(Amazing.Result);
+            }
+        }
     }
 }

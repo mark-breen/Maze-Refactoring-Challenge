@@ -2,30 +2,9 @@ using System;
 
 namespace Maze
 {
-    public interface IRandom
-    {
-        int RandomIntFor(int count);
-    }
-
-    public class AmazingRandom : IRandom
-    {
-        private readonly Random _random;
-
-        public AmazingRandom(int seed)
-        {
-            _random = new Random(seed);
-        }
-
-        public int RandomIntFor(int count)
-        {
-            return (int)(count * _random.NextDouble()) + 1;
-        }
-    }
-
-
     public class Amazing
     {
-        static int _target;      // where GOTO goes
+        private static int _target;      // where GOTO goes
         public static IRandom Random = new AmazingRandom(0);
         public static string Result = "";
 
@@ -63,9 +42,10 @@ namespace Maze
 
             if (horizontal == 1 || vertical == 1) return;
 
+            // Width array?
             var wArray = new int[horizontal + 1,vertical + 1];
 		
-
+            // Vertical array?
             var vArray = new int[horizontal + 1,vertical + 1];
 		
 
@@ -74,6 +54,7 @@ namespace Maze
             var x = Random.RandomIntFor(horizontal);
 
             // 130:170
+            // Create the entrance to the maze
             for (var i = 1; i <= horizontal; i++) 
             {
                 if (i == x)
@@ -81,16 +62,21 @@ namespace Maze
                 else
                     Print(":--");
             }
+
             // 180
+            // Complete the first row
             Print(":");
             Println();
 
             // 190
+            // TODO ????
+            // I think this marks the position of the valid path
             int c = 1;
             wArray[x,1] = c;
             c++;
 
             // 200
+            // Build the rest of the maze...
             int r = x;
             int s = 1;
             Goto(270);
@@ -132,6 +118,7 @@ namespace Maze
                             Goto(270);
                         continue;
                     case 270:
+                        // If the 
                         if (r - 1 == 0)
                             Goto(600);
                         else
@@ -514,16 +501,11 @@ namespace Maze
                         continue;
                     case 940:
                         wArray[r - 1,s] = c;
-                        Goto(950);
-                        continue;
-                    case 950:
                         c++;
                         vArray[r - 1,s] = 2;
                         r--;
-                        Goto(960);
-                        continue;
-                    case 960:
-                        if (c == horizontal * vertical + 1)
+                        // If the maze is complete....
+                        if (IsMazeComplete(horizontal, vertical, c))
                             Goto(1200);
                         else
                             Goto(970);
@@ -543,7 +525,9 @@ namespace Maze
                     case 1000:
                         vArray[r,s - 1] = 1;
                         s--;
-                        if (c == horizontal * vertical + 1)
+
+                        // If the maze is complete...
+                        if (IsMazeComplete(horizontal, vertical, c))
                             Goto(1200);
                         else
                             Goto(1010);
@@ -576,7 +560,8 @@ namespace Maze
                         Goto(1070);
                         continue;
                     case 1070:
-                        if (c == horizontal * vertical + 1)
+                        // If the maze is complete...
+                        if (IsMazeComplete(horizontal, vertical, c))
                             Goto(1200);
                         else
                             Goto(1080);
@@ -608,7 +593,8 @@ namespace Maze
                         continue;
                     case 1130:
                         s++;
-                        if (c == vertical * horizontal + 1)
+                        // If the maze is complete...
+                        if (IsMazeComplete(horizontal, vertical, c))
                             Goto(1200);
                         else
                             Goto(1140);
@@ -642,6 +628,7 @@ namespace Maze
                         Goto(210);
                         continue;
                     case 1200:
+                        // FINI
                         _target = -1;
                         continue;
                 }
@@ -649,34 +636,54 @@ namespace Maze
             }
 
             // 1200:
-            for (int j = 1; j <= vertical; j++) 
+            PrintAllRowsForMaze(horizontal, vertical, vArray);
+        }
+
+        private static bool IsMazeComplete(int horizontal, int vertical, int c)
+        {
+            return c == vertical * horizontal + 1;
+        }
+
+        private static void PrintAllRowsForMaze(int horizontal, int vertical, int[,] vArray)
+        {
+            for (int j = 1; j <= vertical; j++)
             {
-                Print("I");        // 1210
+                PrintARowOfVerticalLines(horizontal, vArray, j);
 
-                for (int i = 1; i <= horizontal; i++) 
-                {
-                    if (vArray[i,j] >= 2)
-                        Print("   ");  // 1240
-                    else
-                        Print("  I");  // 1260
-                }
-
-                Print(" ");   // 1280
-                Println();
-
-                for (int i = 1; i <= horizontal; i++) 
-                {
-                    if (vArray[i,j] == 0)
-                        Print(":--");   // 1300, 1340
-                    else if (vArray[i,j] == 2)
-                        Print(":--");  // 1310, 1340
-                    else
-                        Print(":  "); // 1320
-                }
-
-                Print(":");    // 1360
-                Println();
+                PrintARowOfHorizontalLines(horizontal, vArray, j);
             }
+        }
+
+        private static void PrintARowOfHorizontalLines(int horizontal, int[,] vArray, int j)
+        {
+            for (int i = 1; i <= horizontal; i++)
+            {
+                if (vArray[i, j] == 0)
+                    Print(":--"); // 1300, 1340
+                else if (vArray[i, j] == 2)
+                    Print(":--"); // 1310, 1340
+                else
+                    Print(":  "); // 1320
+            }
+
+            Print(":"); // 1360
+            Println();
+        }
+
+        private static void PrintARowOfVerticalLines(int horizontal, int[,] vArray, int j)
+        {
+            Print("I"); // 1210
+
+            for (int i = 1; i <= horizontal; i++)
+            {
+                if (vArray[i, j] >= 2)
+                    Print("   "); // 1240
+                else
+                    Print("  I"); // 1260
+            }
+
+            Print(" "); // 1280
+            Println();
         }
     }
 }
