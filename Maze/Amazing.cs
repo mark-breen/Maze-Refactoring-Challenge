@@ -543,23 +543,14 @@ namespace Maze
                     case 1030:
                         c++;
                         if (vArray[r,s] == 0)
-                            Goto(1050);
+                        {
+                            vArray[r, s] = 2;
+                        }
                         else
-                            Goto(1040);
-                        continue;
-                    case 1040:
-                        vArray[r,s] = 3;
-                        Goto(1060);
-                        continue;
-                    case 1050:
-                        vArray[r,s] = 2;
-                        Goto(1060);
-                        continue;
-                    case 1060:
+                        {
+                            vArray[r, s] = 3;
+                        }
                         r++;
-                        Goto(1070);
-                        continue;
-                    case 1070:
                         // If the maze is complete...
                         if (IsMazeComplete(horizontal, vertical, c))
                             Goto(1200);
