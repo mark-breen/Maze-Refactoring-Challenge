@@ -520,9 +520,6 @@ namespace Maze
                         continue;
                     case 990:
                         c++;
-                        Goto(1000);
-                        continue;
-                    case 1000:
                         vArray[r,s - 1] = 1;
                         s--;
 
@@ -562,27 +559,21 @@ namespace Maze
                         continue;
                     case 1090:
                         if (q == 1)
-                            Goto(1150);
-                        else
-                            Goto(1100);
-                        continue;
-                    case 1100:
+                        {
+                            z = 1;
+                            Goto(1160);
+                            continue;
+                        }
                         wArray[r,s + 1] = c;
                         c++;
                         if (vArray[r,s] == 0)
-                            Goto(1120);
+                        {
+                            vArray[r, s] = 1;
+                        }
                         else
-                            Goto(1110);
-                        continue;
-                    case 1110:
-                        vArray[r,s] = 3;
-                        Goto(1130);
-                        continue;
-                    case 1120:
-                        vArray[r,s] = 1;
-                        Goto(1130);
-                        continue;
-                    case 1130:
+                        {
+                            vArray[r, s] = 3;
+                        }
                         s++;
                         // If the maze is complete...
                         if (IsMazeComplete(horizontal, vertical, c))
@@ -592,10 +583,6 @@ namespace Maze
                         continue;
                     case 1140:
                         Goto(270);
-                        continue;
-                    case 1150:
-                        z = 1;
-                        Goto(1160);
                         continue;
                     case 1160:
                         if (vArray[r,s] == 0)
