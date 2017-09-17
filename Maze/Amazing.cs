@@ -552,7 +552,7 @@ namespace Maze
                         if (IsMazeComplete(horizontal, vertical, c))
                             Goto(1200);
                         else
-                            Goto(1080);
+                            Goto(600);
                         continue;
                     case 1080:
                         Goto(600);
