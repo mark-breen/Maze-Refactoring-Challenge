@@ -1,6 +1,6 @@
 ﻿Amazing - Copyright by Creative Computing, Morristown, NJ
 :--:  :
-I     I 
-:  :  :
 I  I  I 
-:--:  :
+:  :--:
+I  I  I 
+:--:--:
