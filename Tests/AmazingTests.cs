@@ -1,6 +1,6 @@
 using System;
-using System.IO;
 using NUnit.Framework;
+// ReSharper disable InconsistentNaming
 
 namespace Tests
 {
