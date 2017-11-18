@@ -56,19 +56,9 @@ public class Amazing
 		int z = 0;
 		int x = rnd(h);
 
-		// 130:170
-		for (int i = 1; i <= h; i++) 
-		{
-			if (i == x)
-				print(":  ");
-			else
-				print(":--");
-		}
-		// 180
-		print(":");
-		println();
+		PrintTopRow(h, x);
 
-		// 190
+	    // 190
 		int c = 1;
 		wArray[x,1] = c;
 		c++;
@@ -632,33 +622,60 @@ public class Amazing
 		}
 
 		// 1200:
-		for (int j = 1; j <= v; j++) 
+		for (int j = 1; j <= v; j++)
 		{
-			print("I");        // 1210
+		    PrintVerticalWalls(h, vArray, j);
 
-			for (int i = 1; i <= h; i++) 
-			{
-				if (vArray[i,j] >= 2)
-					print("   ");  // 1240
-				else
-					print("  I");  // 1260
-			}
-
-			print(" ");   // 1280
-			println();
-
-			for (int i = 1; i <= h; i++) 
-			{
-				if (vArray[i,j] == 0)
-					print(":--");   // 1300, 1340
-				else if (vArray[i,j] == 2)
-					print(":--");  // 1310, 1340
-				else
-					print(":  "); // 1320
-			}
-
-			print(":");    // 1360
-			println();
+		    PrintHorizontalWalls(h, vArray, j);
 		}
 	}
+
+
+
+    private static void PrintHorizontalWalls(int h, int[,] vArray, int j)
+    {
+        for (int i = 1; i <= h; i++)
+        {
+            if (vArray[i, j] == 0)
+                print(":--"); // 1300, 1340
+            else if (vArray[i, j] == 2)
+                print(":--"); // 1310, 1340
+            else
+                print(":  "); // 1320
+        }
+
+        print(":"); // 1360
+        println();
+    }
+
+    private static void PrintVerticalWalls(int h, int[,] vArray, int j)
+    {
+        print("I"); // 1210
+
+        for (int i = 1; i <= h; i++)
+        {
+            if (vArray[i, j] >= 2)
+                print("   "); // 1240
+            else
+                print("  I"); // 1260
+        }
+
+        print(" "); // 1280
+        println();
+    }
+
+    private static void PrintTopRow(int h, int x)
+    {
+        // 130:170
+        for (int i = 1; i <= h; i++)
+        {
+            if (i == x)
+                print(":  ");
+            else
+                print(":--");
+        }
+        // 180
+        print(":");
+        println();
+    }
 }
