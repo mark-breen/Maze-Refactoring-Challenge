@@ -6,11 +6,23 @@ I     I
 :--:--:
 
 wArray
+V 
 1 2 
+H 
+1 2 
+V 
+4 3 
+H 
 4 3 
 
 
 vArray
+V 
 2 1 
+H 
+2 1 
+V 
+2 0 
+H 
 2 0 
 

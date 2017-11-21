@@ -1,4 +1,5 @@
 using System;
+using Maze;
 using NUnit.Framework;
 // ReSharper disable InconsistentNaming
 

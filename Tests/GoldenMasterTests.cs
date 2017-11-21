@@ -1,6 +1,7 @@
 ﻿using System;
 using ApprovalTests;
 using ApprovalTests.Reporters;
+using Maze;
 using NUnit.Framework;
 // ReSharper disable InconsistentNaming
 
@@ -15,6 +16,7 @@ namespace Tests
             public void SetUp()
             {
                 Amazing.random = new Random(0);
+                
             }
             
             [Test]
@@ -65,6 +67,8 @@ namespace Tests
             {
                 Amazing.doit(1, 1);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
 
@@ -74,6 +78,8 @@ namespace Tests
             {
                 Amazing.doit(2, 2);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
 
@@ -83,6 +89,30 @@ namespace Tests
             {
                 Amazing.doit(3, 3);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
+                Approvals.Verify(result);
+            }
+
+            [UseReporter(typeof(DiffReporter))]
+            [Test]
+            public void Horizontal_4_Vertical_4()
+            {
+                Amazing.doit(4, 4);
+                var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
+                Approvals.Verify(result);
+            }
+
+            [UseReporter(typeof(DiffReporter))]
+            [Test]
+            public void Horizontal_5_Vertical_5()
+            {
+                Amazing.doit(4, 4);
+                var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
 
@@ -92,6 +122,8 @@ namespace Tests
             {
                 Amazing.doit(10, 10);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
         }
@@ -153,6 +185,8 @@ namespace Tests
             {
                 Amazing.doit(1, 1);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
 
@@ -162,6 +196,8 @@ namespace Tests
             {
                 Amazing.doit(2, 2);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
 
@@ -171,6 +207,8 @@ namespace Tests
             {
                 Amazing.doit(3, 3);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
 
@@ -180,6 +218,8 @@ namespace Tests
             {
                 Amazing.doit(10, 10);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
         }
@@ -241,6 +281,8 @@ namespace Tests
             {
                 Amazing.doit(1, 1);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
 
@@ -251,6 +293,8 @@ namespace Tests
                 // TODO Bug: doesn't create solvable maze!
                 Amazing.doit(2, 2);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
 
@@ -260,6 +304,8 @@ namespace Tests
             {
                 Amazing.doit(3, 3);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
 
@@ -269,6 +315,8 @@ namespace Tests
             {
                 Amazing.doit(10, 10);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
         }
@@ -330,6 +378,8 @@ namespace Tests
             {
                 Amazing.doit(1, 1);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
 
@@ -340,6 +390,8 @@ namespace Tests
                 // TODO Bug: doesn't create solvable maze!
                 Amazing.doit(2, 2);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
 
@@ -349,6 +401,8 @@ namespace Tests
             {
                 Amazing.doit(3, 3);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
 
@@ -358,6 +412,8 @@ namespace Tests
             {
                 Amazing.doit(10, 10);
                 var result = Amazing.result;
+                result += Amazing.WArrayPrinter.ToString();
+                result += Amazing.VArrayPrinter.ToString();
                 Approvals.Verify(result);
             }
         }
