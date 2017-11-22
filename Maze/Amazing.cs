@@ -355,16 +355,10 @@ public class Amazing
 					continue;
 				case 760:
 					x = RandomIntFrom0To(2);
-					GOTO(770);
-					continue;
-				case 770:
 					if (x == 1)
 						GOTO(980);
 					else if (x == 2)
 						GOTO(1090);
-					else
-					    // THIS CAN NEVER BE HIT! :-)
-                        GOTO(780);
 					continue;
 				case 780:
 					GOTO(980);
