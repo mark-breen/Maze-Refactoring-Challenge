@@ -420,12 +420,6 @@ public class Amazing
 					else
 						GOTO(1090);
 					continue;
-				case 920:
-					GOTO(1090);
-					continue;
-				case 930:
-					GOTO(1190);
-					continue;
 				case 940:
 					wArray[r - 1,s] = c;
 					GOTO(950);
