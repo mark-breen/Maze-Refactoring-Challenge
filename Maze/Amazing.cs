@@ -571,15 +571,19 @@ public class Amazing
 
 		}
 
-		// 1200:
-		for (int j = 1; j <= v; j++)
-		{
-		    PrintVerticalWalls(h, vArray, j);
-
-		    PrintHorizontalWalls(h, vArray, j);
-		}
+		ConstructMazeFrom(v, h, vArray);
 	}
 
+    private static void ConstructMazeFrom(int v, int h, int[,] vArray)
+    {
+// 1200:
+        for (int j = 1; j <= v; j++)
+        {
+            PrintVerticalWalls(h, vArray, j);
+
+            PrintHorizontalWalls(h, vArray, j);
+        }
+    }
 
 
     private static void PrintHorizontalWalls(int h, int[,] vArray, int j)
