@@ -232,16 +232,10 @@ public class Amazing
 					continue;
 				case 510:
 					x = RandomIntFrom0To(2);
-					GOTO(520);
-					continue;
-				case 520:
 					if (x == 1)
 						GOTO(940);
 					else if (x == 2)
 						GOTO(1020);
-					else
-					    // THIS CAN NEVER BE HIT! :-)
-                        GOTO(530);
 					continue;
 				case 530:
 					if (s != v)
@@ -267,16 +261,10 @@ public class Amazing
 					continue;
 				case 570:
 					x = RandomIntFrom0To(2);
-					GOTO(580);
-					continue;
-				case 580:
 					if (x == 1)
 						GOTO(940);
 					else if (x == 2)
 						GOTO(1090);
-					else
-					    // THIS CAN NEVER BE HIT! :-)
-                        GOTO(590);
 					continue;
 				case 590:
 					GOTO(940);
