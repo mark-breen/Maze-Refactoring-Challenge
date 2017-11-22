@@ -26,7 +26,7 @@ public class Amazing
 		result += text;
 	}
 
-	public static int rnd(int count) 
+	public static int RandomIntFrom0To(int count) 
 	{
 		return (int) (count * random.NextDouble()) + 1;
 	}
@@ -54,7 +54,7 @@ public class Amazing
 
 		int q = 0;
 		int z = 0;
-		int x = rnd(h);
+		int x = RandomIntFrom0To(h);
 
 		PrintTopRow(h, x);
 
@@ -141,7 +141,7 @@ public class Amazing
 						GOTO(330);
 					continue;
 				case 330:
-					x = rnd(3);
+					x = RandomIntFrom0To(3);
 					GOTO(340);
 					continue;
 				case 340:
@@ -152,6 +152,7 @@ public class Amazing
 					else if (x == 3)
 						GOTO(1020);
 					else
+                        // THIS CAN NEVER BE HIT!!! :-)
 						GOTO(350);
 					continue;
 				case 350:
@@ -177,7 +178,7 @@ public class Amazing
 						GOTO(390);
 					continue;
 				case 390:
-					x = rnd(3);
+					x = RandomIntFrom0To(3);
 					GOTO(400);
 					continue;
 				case 400:
@@ -191,7 +192,7 @@ public class Amazing
 						GOTO(410);
 					continue;
 				case 410:
-					x = rnd(2);
+					x = RandomIntFrom0To(2);
 					GOTO(420);
 					continue;
 				case 420:
@@ -237,7 +238,7 @@ public class Amazing
 						GOTO(490);
 					continue;
 				case 490:
-					x = rnd(3);
+					x = RandomIntFrom0To(3);
 					GOTO(500);
 					continue;
 				case 500:
@@ -251,7 +252,7 @@ public class Amazing
 						GOTO(510);
 					continue;
 				case 510:
-					x = rnd(2);
+					x = RandomIntFrom0To(2);
 					GOTO(520);
 					continue;
 				case 520:
@@ -285,7 +286,7 @@ public class Amazing
 						GOTO(570);
 					continue;
 				case 570:
-					x = rnd(2);
+					x = RandomIntFrom0To(2);
 					GOTO(580);
 					continue;
 				case 580:
@@ -346,7 +347,7 @@ public class Amazing
 						GOTO(680);
 					continue;
 				case 680:
-					x = rnd(3);
+					x = RandomIntFrom0To(3);
 					GOTO(690);
 					continue;
 				case 690:
@@ -360,7 +361,7 @@ public class Amazing
 						GOTO(700);
 					continue;
 				case 700:
-					x = rnd(2);
+					x = RandomIntFrom0To(2);
 					GOTO(710);
 					continue;
 				case 710:
@@ -394,7 +395,7 @@ public class Amazing
 						GOTO(760);
 					continue;
 				case 760:
-					x = rnd(2);
+					x = RandomIntFrom0To(2);
 					GOTO(770);
 					continue;
 				case 770:
@@ -443,7 +444,7 @@ public class Amazing
 						GOTO(850);
 					continue;
 				case 850:
-					x = rnd(2);
+					x = RandomIntFrom0To(2);
 					GOTO(860);
 					continue;
 				case 860:
