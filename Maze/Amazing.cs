@@ -142,18 +142,12 @@ public class Amazing
 					continue;
 				case 330:
 					x = RandomIntFrom0To(3);
-					GOTO(340);
-					continue;
-				case 340:
 					if (x == 1)
 						GOTO(940);
 					else if (x == 2)
 						GOTO(980);
 					else if (x == 3)
 						GOTO(1020);
-					else
-                        // THIS CAN NEVER BE HIT!!! :-)
-						GOTO(350);
 					continue;
 				case 350:
 					if (s != v)
@@ -189,6 +183,7 @@ public class Amazing
 					else if (x == 3)
 						GOTO(1090);
 					else
+                        // THIS CAN NEVER BE HIT ! :-)
 						GOTO(410);
 					continue;
 				case 410:
@@ -201,6 +196,7 @@ public class Amazing
 					else if (x == 2)
 						GOTO(980);
 					else
+                        // THIS CAN NEVER BE HIT! :-)
 						GOTO(430);
 					continue;
 				case 430:
@@ -249,6 +245,7 @@ public class Amazing
 					else if (x == 3)
 						GOTO(1090);
 					else
+                        // THIS CAN NEVER BE HIT! :-)
 						GOTO(510);
 					continue;
 				case 510:
@@ -261,7 +258,8 @@ public class Amazing
 					else if (x == 2)
 						GOTO(1020);
 					else
-						GOTO(530);
+					    // THIS CAN NEVER BE HIT! :-)
+                        GOTO(530);
 					continue;
 				case 530:
 					if (s != v)
@@ -295,7 +293,8 @@ public class Amazing
 					else if (x == 2)
 						GOTO(1090);
 					else
-						GOTO(590);
+					    // THIS CAN NEVER BE HIT! :-)
+                        GOTO(590);
 					continue;
 				case 590:
 					GOTO(940);
@@ -358,7 +357,8 @@ public class Amazing
 					else if (x == 3)
 						GOTO(1090);
 					else
-						GOTO(700);
+					    // THIS CAN NEVER BE HIT! :-)
+                        GOTO(700);
 					continue;
 				case 700:
 					x = RandomIntFrom0To(2);
@@ -370,7 +370,8 @@ public class Amazing
 					else if (x == 2)
 						GOTO(1020);
 					else
-						GOTO(720);
+					    // THIS CAN NEVER BE HIT! :-)
+                        GOTO(720);
 					continue;
 				case 720:
 					if (s != v)
@@ -404,7 +405,8 @@ public class Amazing
 					else if (x == 2)
 						GOTO(1090);
 					else
-						GOTO(780);
+					    // THIS CAN NEVER BE HIT! :-)
+                        GOTO(780);
 					continue;
 				case 780:
 					GOTO(980);
@@ -453,7 +455,8 @@ public class Amazing
 					else if (x == 2)
 						GOTO(1090);
 					else
-						GOTO(870);
+					    // THIS CAN NEVER BE HIT! :-)
+                        GOTO(870);
 					continue;
 				case 870:
 					GOTO(1020);
