@@ -245,7 +245,7 @@ public class Amazing
 					continue;
 				case 540:
 					if (z == 1)
-						GOTO(590);
+						GOTO(940);
 					else
 						GOTO(550);
 					continue;
@@ -255,7 +255,7 @@ public class Amazing
 					continue;
 				case 560:
 					if (wArray[r,s + 1] != 0)
-						GOTO(590);
+						GOTO(940);
 					else
 						GOTO(570);
 					continue;
@@ -265,9 +265,6 @@ public class Amazing
 						GOTO(940);
 					else if (x == 2)
 						GOTO(1090);
-					continue;
-				case 590:
-					GOTO(940);
 					continue;
 				case 600:
 					if (s - 1 == 0)
