@@ -377,7 +377,7 @@ public class Amazing
 					continue;
 				case 820:
 					if (z == 1)
-						GOTO(870);
+						GOTO(1020);
 					else
 						GOTO(830);
 					continue;
@@ -387,7 +387,7 @@ public class Amazing
 					continue;
 				case 840:
 					if (wArray[r,s + 1] != 0)
-						GOTO(870);
+						GOTO(1020);
 					else
 						GOTO(850);
 					continue;
@@ -398,9 +398,6 @@ public class Amazing
 					else if (x == 2)
 						GOTO(1090);
 					continue;
-				case 870:
-					GOTO(1020);
-					continue;
 				case 880:
 					if (s != v)
 						GOTO(910);
@@ -409,19 +406,19 @@ public class Amazing
 					continue;
 				case 890:
 					if (z == 1)
-						GOTO(930);
+						GOTO(1190);
 					else
 						GOTO(900);
 					continue;
 				case 900:
 					q = 1;
-					GOTO(920);
+					GOTO(1090);
 					continue;
 				case 910:
 					if (wArray[r,s + 1] != 0)
-						GOTO(930);
+						GOTO(1190);
 					else
-						GOTO(920);
+						GOTO(1090);
 					continue;
 				case 920:
 					GOTO(1090);
