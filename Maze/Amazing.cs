@@ -487,7 +487,7 @@ public class Amazing
 					if (c == h * v + 1)
 						GOTO(1200);
 					else
-						GOTO(1080);
+						GOTO(600);
 					continue;
 				case 1080:
 					GOTO(600);
