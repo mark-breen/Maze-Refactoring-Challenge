@@ -489,9 +489,6 @@ public class Amazing
 					else
 						GOTO(600);
 					continue;
-				case 1080:
-					GOTO(600);
-					continue;
 				case 1090:
 					if (q == 1)
 						GOTO(1150);
@@ -519,10 +516,7 @@ public class Amazing
 					if (c == v * h + 1)
 						GOTO(1200);
 					else
-						GOTO(1140);
-					continue;
-				case 1140:
-					GOTO(270);
+						GOTO(270);
 					continue;
 				case 1150:
 					z = 1;
