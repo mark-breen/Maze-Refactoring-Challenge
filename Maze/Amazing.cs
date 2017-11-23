@@ -431,7 +431,7 @@ public class Amazing
 					GOTO(960);
 					continue;
 				case 960:
-					if (c == h * v + 1)
+					if (MazeIsComplete(c, h, v))
 						GOTO(1200);
 					else
 						GOTO(970);
@@ -451,7 +451,7 @@ public class Amazing
 				case 1000:
 					vArray[r,s - 1] = 1;
 					s--;
-					if (c == h * v + 1)
+					if (MazeIsComplete(c, h, v))
 						GOTO(1200);
 					else
 						GOTO(1010);
@@ -484,7 +484,7 @@ public class Amazing
 					GOTO(1070);
 					continue;
 				case 1070:
-					if (c == h * v + 1)
+					if (MazeIsComplete(c, h, v))
 						GOTO(1200);
 					else
 						GOTO(600);
@@ -513,7 +513,7 @@ public class Amazing
 					continue;
 				case 1130:
 					s++;
-					if (c == v * h + 1)
+					if (MazeIsComplete(c, h, v))
 						GOTO(1200);
 					else
 						GOTO(270);
@@ -549,6 +549,11 @@ public class Amazing
 
 		ConstructMazeFrom(v, h, vArray);
 	}
+
+    private static bool MazeIsComplete(int c, int h, int v)
+    {
+        return c == h * v + 1;
+    }
 
     private static void ConstructMazeFrom(int v, int h, int[,] vArray)
     {
