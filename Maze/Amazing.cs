@@ -74,30 +74,24 @@ public class Amazing
 			{
 				case 210:
 					if (r != h)
-						GOTO(250);
+					{
+					    r++;
+                    }
 					else
-						GOTO(220);
-					continue;
-				case 220:
-					if (s != v)
-						GOTO(240);
-					else
-						GOTO(230);
-					continue;
-				case 230:
-					r = 1;
-					s = 1;
-					GOTO(260);
-					continue;
-				case 240:
-					r = 1;
-					s++;
-					GOTO(260);
-					continue;
-				case 250:
-					r++;
-					GOTO(260);
-					continue;
+					{
+					    if (s != v)
+					    {
+					        r = 1;
+					        s++;
+                        }
+					    else
+					    {
+					        r = 1;
+					        s = 1;
+                        }
+                    }
+				    GOTO(260);
+                    continue;
 				case 260:
 					if (wArray[r,s] == 0)
 						GOTO(210);
@@ -434,11 +428,10 @@ public class Amazing
 					if (MazeIsComplete(c, h, v))
 						GOTO(1200);
 					else
-						GOTO(970);
-					continue;
-				case 970:
-					q = 0;
-					GOTO(270);
+					{
+					    q = 0;
+					    GOTO(270);
+                    }
 					continue;
 				case 980:
 					wArray[r,s - 1] = c;
@@ -454,17 +447,13 @@ public class Amazing
 					if (MazeIsComplete(c, h, v))
 						GOTO(1200);
 					else
-						GOTO(1010);
-					continue;
-				case 1010:
-					q = 0;
-					GOTO(270);
+					{
+					    q = 0;
+					    GOTO(270);
+                    }
 					continue;
 				case 1020:
 					wArray[r + 1,s] = c;
-					GOTO(1030);
-					continue;
-				case 1030:
 					c++;
 					if (vArray[r,s] == 0)
 						GOTO(1050);
@@ -501,33 +490,31 @@ public class Amazing
 					if (vArray[r,s] == 0)
 						GOTO(1120);
 					else
-						GOTO(1110);
-					continue;
-				case 1110:
-					vArray[r,s] = 3;
-					GOTO(1130);
+					{
+					    vArray[r, s] = 3;
+					    GOTO(1130);
+                    }
 					continue;
 				case 1120:
 					vArray[r,s] = 1;
 					GOTO(1130);
 					continue;
 				case 1130:
-					s++;
 					if (MazeIsComplete(c, h, v))
 						GOTO(1200);
 					else
-						GOTO(270);
+					{
+					    s++;
+					    GOTO(270);
+					}
 					continue;
 				case 1150:
 					z = 1;
-					GOTO(1160);
-					continue;
-				case 1160:
-					if (vArray[r,s] == 0)
-						GOTO(1180);
-					else
-						GOTO(1170);
-					continue;
+				    if (vArray[r, s] == 0)
+				        GOTO(1180);
+				    else
+				        GOTO(1170);
+                    continue;
 				case 1170:
 					vArray[r,s] = 3;
 					q = 0;
