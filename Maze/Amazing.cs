@@ -139,35 +139,45 @@ public class Amazing
 
                 // TODO Another core method?
 				case 350:
-					if (s != v)
-						GOTO(380);
+					if ((s != v))
+					{
+					    if (wArray[r, s + 1] != 0)
+					    {
+					        GOTO(410);
+					    }
+					    else
+					    {
+					        GOTO(390);
+					    }
+                    }
 					else
-						GOTO(360);
+					{
+					    if (z == 1)
+					    {
+					        GOTO(410);
+					    }
+					    else
+					    {
+					        q = 1;
+					        GOTO(390);
+                        }
+                    }
 					continue;
-				case 360:
-					if (z == 1)
-						GOTO(410);
-					else
-						GOTO(370);
-					continue;
-				case 370:
-					q = 1;
-					GOTO(390);
-					continue;
-				case 380:
-					if (wArray[r,s + 1] != 0)
-						GOTO(410);
-					else
-						GOTO(390);
-					continue;
+                    
 				case 390:
 					x = RandomIntFrom0To(3);
 					if (x == 1)
-						GOTO(940);
+					{
+					    GOTO(940);
+					}
 					else if (x == 2)
-						GOTO(980);
+					{
+					    GOTO(980);
+					}
 					else if (x == 3)
-						GOTO(1090);
+					{
+					    GOTO(1090);
+					}
 					continue;
 				case 410:
 					x = RandomIntFrom0To(2);
