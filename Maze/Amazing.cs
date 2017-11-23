@@ -113,32 +113,31 @@ public class Amazing
 					    }
 					    else
 					    {
-					        if (r == h)
+					        if ((r == h) || (wArray[r + 1, s] != 0))
 					        {
 					            GOTO(350);
 					        }
 					        else
-                            { 
-					            GOTO(320);
+                            {
+                                x = RandomIntFrom0To(3);
+                                if (x == 1)
+                                {
+                                    GOTO(940);
+                                }
+                                else if (x == 2)
+                                {
+                                    GOTO(980);
+                                }
+                                else if (x == 3)
+                                {
+                                    GOTO(1020);
+                                }
                             }
                         }
                     }
 					continue;
-				case 320:
-					if (wArray[r + 1,s] != 0)
-						GOTO(350);
-					else
-						GOTO(330);
-					continue;
-				case 330:
-					x = RandomIntFrom0To(3);
-					if (x == 1)
-						GOTO(940);
-					else if (x == 2)
-						GOTO(980);
-					else if (x == 3)
-						GOTO(1020);
-					continue;
+
+                // TODO Another core method?
 				case 350:
 					if (s != v)
 						GOTO(380);
@@ -177,6 +176,8 @@ public class Amazing
 					else if (x == 2)
 						GOTO(980);
 					continue;
+
+                // TODO Another core method?
 				case 430:
 					if (r == h)
 						GOTO(530);
@@ -256,12 +257,16 @@ public class Amazing
 					else if (x == 2)
 						GOTO(1090);
 					continue;
+
+                // TODO Another core method?
 				case 600:
 					if (s - 1 == 0)
 						GOTO(790);
 					else
 						GOTO(610);
 					continue;
+                
+
 				case 610:
 					if (wArray[r,s - 1] != 0)
 						GOTO(790);
@@ -410,10 +415,15 @@ public class Amazing
 					else
 						GOTO(1090);
 					continue;
-				case 940:
+
+
+                // TODO Another core method?
+                case 940:
 					wArray[r - 1,s] = c;
 					GOTO(950);
 					continue;
+
+
 				case 950:
 					c++;
 					vArray[r - 1,s] = 2;
@@ -429,10 +439,13 @@ public class Amazing
 					    GOTO(270);
                     }
 					continue;
-				case 980:
+
+			    // TODO Another core method?
+                case 980:
 					wArray[r,s - 1] = c;
 					GOTO(990);
 					continue;
+
 				case 990:
 					c++;
 					GOTO(1000);
@@ -448,7 +461,10 @@ public class Amazing
 					    GOTO(270);
                     }
 					continue;
-				case 1020:
+
+
+                // TODO Another core method?
+                case 1020:
 					wArray[r + 1,s] = c;
 					c++;
 					if (vArray[r,s] == 0)
@@ -456,6 +472,7 @@ public class Amazing
 					else
 						GOTO(1040);
 					continue;
+                
 				case 1040:
 					vArray[r,s] = 3;
 					GOTO(1060);
