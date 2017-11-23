@@ -98,35 +98,33 @@ public class Amazing
 					else
 						GOTO(270);
 					continue;
+
+                // TODO Extract method for this case
 				case 270:
 					if (r - 1 == 0)
 						GOTO(600);
 					else
-						GOTO(280);
-					continue;
-				case 280:
-					if (wArray[r - 1,s] != 0)
-						GOTO(600);
-					else
-						GOTO(290);
-					continue;
-				case 290:
-					if (s - 1 == 0)
-						GOTO(430);
-					else
-						GOTO(300);
-					continue;
-				case 300:
-					if (wArray[r,s - 1] != 0)
-						GOTO(430);
-					else
-						GOTO(310);
-					continue;
-				case 310:
-					if (r == h)
-						GOTO(350);
-					else
-						GOTO(320);
+					{
+					    if (wArray[r - 1, s] != 0)
+					        GOTO(600);
+					    else
+					    {
+					        if (s - 1 == 0)
+					            GOTO(430);
+					        else
+					        {
+					            if (wArray[r, s - 1] != 0)
+					                GOTO(430);
+					            else
+					            {
+					                if (r == h)
+					                    GOTO(350);
+					                else
+					                    GOTO(320);
+                                }
+                            }
+                        }
+                    }
 					continue;
 				case 320:
 					if (wArray[r + 1,s] != 0)
