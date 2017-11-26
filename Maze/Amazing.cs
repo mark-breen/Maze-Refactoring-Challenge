@@ -41,22 +41,24 @@ public class Amazing
 		clear();
 		print("Amazing - Copyright by Creative Computing, Morristown, NJ");
 		println();
+        
+	    if (horizontal == 1 || vertical == 1) return;
 
-		int h = horizontal;
-		int v = vertical;
-		if (h == 1 || v == 1) return;
-
-		int[,] wArray = new int[h + 1,v + 1];
+        // TODO Confirm that this array is used to construct the path before printing
+		int[,] wArray = new int[horizontal + 1,vertical + 1];
 		
-
-		int[,] vArray = new int[h + 1,v + 1];
+        // TODO Confirm that this array is used to build the printable array
+		int[,] vArray = new int[horizontal + 1,vertical + 1];
 		
-
+        // TODO What is this variable for?
 		int q = 0;
-		int z = 0;
-		int x = RandomIntFrom0To(h);
 
-		PrintTopRow(h, x);
+        // TODO What is this variable for?
+		int z = 0;
+
+		int x = RandomIntFrom0To(horizontal);
+
+		PrintTopRow(horizontal, x);
 
 	    // 190
 		int c = 1;
@@ -73,13 +75,13 @@ public class Amazing
 			switch (target) 
 			{
 				case 210:
-					if (r != h)
+					if (r != horizontal)
 					{
 					    r++;
                     }
 					else
 					{
-					    if (s != v)
+					    if (s != vertical)
 					    {
 					        r = 1;
 					        s++;
@@ -101,19 +103,22 @@ public class Amazing
 
                 // TODO Extract method for this case
 				case 270:
+                    // TODO I think this condition is: if west is blocked
 					if ((r - 1 == 0) || (wArray[r - 1, s] != 0))
 					{
 					    GOTO(600);
 					}
 					else
 					{
+                        // TODO I think this condition is: if north is blocked
 					    if ((s - 1 == 0) || (wArray[r, s - 1] != 0))
 					    {
 					        GOTO(430);
 					    }
 					    else
 					    {
-					        if ((r == h) || (wArray[r + 1, s] != 0))
+                            // TODO I think this condition is: if east is blockedF
+					        if ((r == horizontal) || (wArray[r + 1, s] != 0))
 					        {
 					            GOTO(350);
 					        }
@@ -139,7 +144,8 @@ public class Amazing
 
                 // TODO Another core method?
 				case 350:
-					if ((s != v))
+                    // 
+					if ((s != vertical))
 					{
 					    if (wArray[r, s + 1] != 0)
 					    {
@@ -189,7 +195,7 @@ public class Amazing
 
                 // TODO Another core method?
 				case 430:
-					if (r == h)
+					if (r == horizontal)
 						GOTO(530);
 					else
 						GOTO(440);
@@ -201,7 +207,7 @@ public class Amazing
 						GOTO(450);
 					continue;
 				case 450:
-					if (s != v)
+					if (s != vertical)
 						GOTO(480);
 					else
 						GOTO(460);
@@ -239,7 +245,7 @@ public class Amazing
 						GOTO(1020);
 					continue;
 				case 530:
-					if (s != v)
+					if (s != vertical)
 						GOTO(560);
 					else
 						GOTO(540);
@@ -284,7 +290,7 @@ public class Amazing
 						GOTO(620);
 					continue;
 				case 620:
-					if (r == h)
+					if (r == horizontal)
 						GOTO(720);
 					else
 						GOTO(630);
@@ -296,7 +302,7 @@ public class Amazing
 						GOTO(640);
 					continue;
 				case 640:
-					if (s != v)
+					if (s != vertical)
 						GOTO(670);
 					else
 						GOTO(650);
@@ -334,7 +340,7 @@ public class Amazing
 						GOTO(1020);
 					continue;
 				case 720:
-					if (s != v)
+					if (s != vertical)
 						GOTO(750);
 					else
 						GOTO(730);
@@ -363,7 +369,7 @@ public class Amazing
 						GOTO(1090);
 					continue;
 				case 790:
-					if (r == h)
+					if (r == horizontal)
 						GOTO(880);
 					else
 						GOTO(800);
@@ -375,7 +381,7 @@ public class Amazing
 						GOTO(810);
 					continue;
 				case 810:
-					if (s != v)
+					if (s != vertical)
 						GOTO(840);
 					else
 						GOTO(820);
@@ -404,7 +410,7 @@ public class Amazing
 						GOTO(1090);
 					continue;
 				case 880:
-					if (s != v)
+					if (s != vertical)
 						GOTO(910);
 					else
 						GOTO(890);
@@ -441,7 +447,7 @@ public class Amazing
 					GOTO(960);
 					continue;
 				case 960:
-					if (MazeIsComplete(c, h, v))
+					if (MazeIsComplete(c, horizontal, vertical))
 						GOTO(1200);
 					else
 					{
@@ -463,7 +469,7 @@ public class Amazing
 				case 1000:
 					vArray[r,s - 1] = 1;
 					s--;
-					if (MazeIsComplete(c, h, v))
+					if (MazeIsComplete(c, horizontal, vertical))
 						GOTO(1200);
 					else
 					{
@@ -496,7 +502,7 @@ public class Amazing
 					GOTO(1070);
 					continue;
 				case 1070:
-					if (MazeIsComplete(c, h, v))
+					if (MazeIsComplete(c, horizontal, vertical))
 						GOTO(1200);
 					else
 						GOTO(600);
@@ -523,7 +529,7 @@ public class Amazing
 					GOTO(1130);
 					continue;
 				case 1130:
-					if (MazeIsComplete(c, h, v))
+					if (MazeIsComplete(c, horizontal, vertical))
 						GOTO(1200);
 					else
 					{
@@ -557,7 +563,7 @@ public class Amazing
 
 		}
 
-		ConstructMazeFrom(v, h, vArray);
+		ConstructMazeFrom(vertical, horizontal, vArray);
 	}
 
     private static bool MazeIsComplete(int c, int h, int v)
