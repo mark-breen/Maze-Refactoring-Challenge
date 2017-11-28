@@ -4,8 +4,10 @@ public class Amazing
 	static int target = 0;      // where GOTO goes
 	public static Random random = new Random(0);
 	public static string result = "";
+    private static int[,] _resolvedCoordinates;
+    private static int _resolvedCoordinateCount;
 
-	public static void main(String[] args) 
+    public static void main(String[] args) 
 	{
 		doit(int.Parse(args[0]),int.Parse(args[1]));
 		System.Console.WriteLine(result);
@@ -36,19 +38,19 @@ public class Amazing
 		target = lineno;
 	}
 
-	public static void doit(int horizontal, int vertical) 
+	public static void doit(int horizontalLimit, int verticalLimit) 
 	{
 		clear();
 		print("Amazing - Copyright by Creative Computing, Morristown, NJ");
 		println();
         
-	    if (horizontal == 1 || vertical == 1) return;
+	    if (horizontalLimit == 1 || verticalLimit == 1) return;
 
-        // TODO Confirm that this array is used to construct the path before printing
-		int[,] wArray = new int[horizontal + 1,vertical + 1];
+        // TODO Confirm that this array is used to record resolved coordinates
+		_resolvedCoordinates = new int[horizontalLimit + 1,verticalLimit + 1];
 		
         // TODO Confirm that this array is used to build the printable array
-		int[,] vArray = new int[horizontal + 1,vertical + 1];
+		int[,] vArray = new int[horizontalLimit + 1,verticalLimit + 1];
 		
         // TODO What is this variable for?
 		int q = 0;
@@ -56,18 +58,21 @@ public class Amazing
         // TODO What is this variable for?
 		int z = 0;
 
-		int x = RandomIntFrom0To(horizontal);
+		int x = RandomIntFrom0To(horizontalLimit);
 
-		PrintTopRow(horizontal, x);
+		PrintTopRow(horizontalLimit, x);
 
-	    // 190
-		int c = 1;
-		wArray[x,1] = c;
-		c++;
+        // 190
+        // TODO Confirm the following
+        // Is incremented for each resolved coordinate
+        // Vaue is assigned to resolvedCoordinates to mark resolved coordinate
+        _resolvedCoordinateCount = 1;
+        IncrementResolvedCoordinateCount(x, 1);
+        _resolvedCoordinateCount++;
 
 		// 200
-		int r = x;
-		int s = 1;
+		int currentColumn = x;
+		int currentRow = 1;
 		GOTO(270);
 
 		while (target != -1) 
@@ -75,27 +80,27 @@ public class Amazing
 			switch (target) 
 			{
 				case 210:
-					if (r != horizontal)
+					if (currentColumn != horizontalLimit)
 					{
-					    r++;
+					    currentColumn++;
                     }
 					else
 					{
-					    if (s != vertical)
+					    if (currentRow != verticalLimit)
 					    {
-					        r = 1;
-					        s++;
+					        currentColumn = 1;
+					        currentRow++;
                         }
 					    else
 					    {
-					        r = 1;
-					        s = 1;
+					        currentColumn = 1;
+					        currentRow = 1;
                         }
                     }
 				    GOTO(260);
                     continue;
 				case 260:
-					if (wArray[r,s] == 0)
+					if (_resolvedCoordinates[currentColumn,currentRow] == 0)
 						GOTO(210);
 					else
 						GOTO(270);
@@ -104,21 +109,21 @@ public class Amazing
                 // TODO Extract method for this case
 				case 270:
                     // TODO I think this condition is: if west is blocked
-					if ((r - 1 == 0) || (wArray[r - 1, s] != 0))
+					if (WestIsUnavailable(currentColumn, _resolvedCoordinates, currentRow))
 					{
 					    GOTO(600);
 					}
 					else
 					{
                         // TODO I think this condition is: if north is blocked
-					    if ((s - 1 == 0) || (wArray[r, s - 1] != 0))
+					    if (NorthIsUnavailable(currentRow, _resolvedCoordinates, currentColumn))
 					    {
 					        GOTO(430);
 					    }
 					    else
 					    {
-                            // TODO I think this condition is: if east is blockedF
-					        if ((r == horizontal) || (wArray[r + 1, s] != 0))
+                            // TODO I think this condition is: if east is blocked
+					        if (EastIsUnavailable(horizontalLimit, currentColumn, _resolvedCoordinates, currentRow))
 					        {
 					            GOTO(350);
 					        }
@@ -145,9 +150,9 @@ public class Amazing
                 // TODO Another core method?
 				case 350:
                     // 
-					if ((s != vertical))
+					if ((currentRow != verticalLimit))
 					{
-					    if (wArray[r, s + 1] != 0)
+					    if (_resolvedCoordinates[currentColumn, currentRow + 1] != 0)
 					    {
 					        GOTO(410);
 					    }
@@ -195,19 +200,19 @@ public class Amazing
 
                 // TODO Another core method?
 				case 430:
-					if (r == horizontal)
+					if (currentColumn == horizontalLimit)
 						GOTO(530);
 					else
 						GOTO(440);
 					continue;
 				case 440:
-					if (wArray[r + 1,s] != 0)
+					if (_resolvedCoordinates[currentColumn + 1,currentRow] != 0)
 						GOTO(530);
 					else
 						GOTO(450);
 					continue;
 				case 450:
-					if (s != vertical)
+					if (currentRow != verticalLimit)
 						GOTO(480);
 					else
 						GOTO(460);
@@ -223,7 +228,7 @@ public class Amazing
 					GOTO(490);
 					continue;
 				case 480:
-					if (wArray[r,s + 1] != 0)
+					if (_resolvedCoordinates[currentColumn,currentRow + 1] != 0)
 						GOTO(510);
 					else
 						GOTO(490);
@@ -245,7 +250,7 @@ public class Amazing
 						GOTO(1020);
 					continue;
 				case 530:
-					if (s != vertical)
+					if (currentRow != verticalLimit)
 						GOTO(560);
 					else
 						GOTO(540);
@@ -261,7 +266,7 @@ public class Amazing
 					GOTO(570);
 					continue;
 				case 560:
-					if (wArray[r,s + 1] != 0)
+					if (_resolvedCoordinates[currentColumn,currentRow + 1] != 0)
 						GOTO(940);
 					else
 						GOTO(570);
@@ -276,7 +281,7 @@ public class Amazing
 
                 // TODO Another core method?
 				case 600:
-					if (s - 1 == 0)
+					if (currentRow - 1 == 0)
 						GOTO(790);
 					else
 						GOTO(610);
@@ -284,25 +289,25 @@ public class Amazing
                 
 
 				case 610:
-					if (wArray[r,s - 1] != 0)
+					if (_resolvedCoordinates[currentColumn,currentRow - 1] != 0)
 						GOTO(790);
 					else
 						GOTO(620);
 					continue;
 				case 620:
-					if (r == horizontal)
+					if (currentColumn == horizontalLimit)
 						GOTO(720);
 					else
 						GOTO(630);
 					continue;
 				case 630:
-					if (wArray[r + 1,s] != 0)
+					if (_resolvedCoordinates[currentColumn + 1,currentRow] != 0)
 						GOTO(720);
 					else
 						GOTO(640);
 					continue;
 				case 640:
-					if (s != vertical)
+					if (currentRow != verticalLimit)
 						GOTO(670);
 					else
 						GOTO(650);
@@ -318,7 +323,7 @@ public class Amazing
 					GOTO(680);
 					continue;
 				case 670:
-					if (wArray[r,s + 1] != 0)
+					if (_resolvedCoordinates[currentColumn,currentRow + 1] != 0)
 						GOTO(700);
 					else
 						GOTO(680);
@@ -340,7 +345,7 @@ public class Amazing
 						GOTO(1020);
 					continue;
 				case 720:
-					if (s != vertical)
+					if (currentRow != verticalLimit)
 						GOTO(750);
 					else
 						GOTO(730);
@@ -356,7 +361,7 @@ public class Amazing
 					GOTO(760);
 					continue;
 				case 750:
-					if (wArray[r,s + 1] != 0)
+					if (_resolvedCoordinates[currentColumn,currentRow + 1] != 0)
 						GOTO(980);
 					else
 						GOTO(760);
@@ -369,19 +374,19 @@ public class Amazing
 						GOTO(1090);
 					continue;
 				case 790:
-					if (r == horizontal)
+					if (currentColumn == horizontalLimit)
 						GOTO(880);
 					else
 						GOTO(800);
 					continue;
 				case 800:
-					if (wArray[r + 1,s] != 0)
+					if (_resolvedCoordinates[currentColumn + 1,currentRow] != 0)
 						GOTO(880);
 					else
 						GOTO(810);
 					continue;
 				case 810:
-					if (s != vertical)
+					if (currentRow != verticalLimit)
 						GOTO(840);
 					else
 						GOTO(820);
@@ -397,7 +402,7 @@ public class Amazing
 					GOTO(990);
 					continue;
 				case 840:
-					if (wArray[r,s + 1] != 0)
+					if (_resolvedCoordinates[currentColumn,currentRow + 1] != 0)
 						GOTO(1020);
 					else
 						GOTO(850);
@@ -410,7 +415,7 @@ public class Amazing
 						GOTO(1090);
 					continue;
 				case 880:
-					if (s != vertical)
+					if (currentRow != verticalLimit)
 						GOTO(910);
 					else
 						GOTO(890);
@@ -426,7 +431,7 @@ public class Amazing
 					GOTO(1090);
 					continue;
 				case 910:
-					if (wArray[r,s + 1] != 0)
+					if (_resolvedCoordinates[currentColumn,currentRow + 1] != 0)
 						GOTO(210);
 					else
 						GOTO(1090);
@@ -435,19 +440,19 @@ public class Amazing
 
                 // TODO Another core method?
                 case 940:
-					wArray[r - 1,s] = c;
+                    IncrementResolvedCoordinateCount(currentColumn - 1, currentRow);
 					GOTO(950);
 					continue;
 
 
 				case 950:
-					c++;
-					vArray[r - 1,s] = 2;
-					r--;
+				    _resolvedCoordinateCount++;
+                    vArray[currentColumn - 1,currentRow] = 2;
+					currentColumn--;
 					GOTO(960);
 					continue;
 				case 960:
-					if (MazeIsComplete(c, horizontal, vertical))
+					if (MazeIsComplete(_resolvedCoordinateCount, horizontalLimit, verticalLimit))
 						GOTO(1200);
 					else
 					{
@@ -458,18 +463,18 @@ public class Amazing
 
 			    // TODO Another core method?
                 case 980:
-					wArray[r,s - 1] = c;
+                    IncrementResolvedCoordinateCount(currentColumn, currentRow - 1);
 					GOTO(990);
 					continue;
 
 				case 990:
-					c++;
-					GOTO(1000);
+				    _resolvedCoordinateCount++;
+                    GOTO(1000);
 					continue;
 				case 1000:
-					vArray[r,s - 1] = 1;
-					s--;
-					if (MazeIsComplete(c, horizontal, vertical))
+					vArray[currentColumn,currentRow - 1] = 1;
+					currentRow--;
+					if (MazeIsComplete(_resolvedCoordinateCount, horizontalLimit, verticalLimit))
 						GOTO(1200);
 					else
 					{
@@ -481,28 +486,28 @@ public class Amazing
 
                 // TODO Another core method?
                 case 1020:
-					wArray[r + 1,s] = c;
-					c++;
-					if (vArray[r,s] == 0)
+                    IncrementResolvedCoordinateCount(currentColumn + 1, currentRow);
+                    _resolvedCoordinateCount++;
+                    if (vArray[currentColumn,currentRow] == 0)
 						GOTO(1050);
 					else
 						GOTO(1040);
 					continue;
                 
 				case 1040:
-					vArray[r,s] = 3;
+					vArray[currentColumn,currentRow] = 3;
 					GOTO(1060);
 					continue;
 				case 1050:
-					vArray[r,s] = 2;
+					vArray[currentColumn,currentRow] = 2;
 					GOTO(1060);
 					continue;
 				case 1060:
-					r++;
+					currentColumn++;
 					GOTO(1070);
 					continue;
 				case 1070:
-					if (MazeIsComplete(c, horizontal, vertical))
+					if (MazeIsComplete(_resolvedCoordinateCount, horizontalLimit, verticalLimit))
 						GOTO(1200);
 					else
 						GOTO(600);
@@ -514,46 +519,46 @@ public class Amazing
 						GOTO(1100);
 					continue;
 				case 1100:
-					wArray[r,s + 1] = c;
-					c++;
-					if (vArray[r,s] == 0)
+                    IncrementResolvedCoordinateCount(currentColumn, currentRow + 1);
+				    _resolvedCoordinateCount++;
+                    if (vArray[currentColumn,currentRow] == 0)
 						GOTO(1120);
 					else
 					{
-					    vArray[r, s] = 3;
+					    vArray[currentColumn, currentRow] = 3;
 					    GOTO(1130);
                     }
 					continue;
 				case 1120:
-					vArray[r,s] = 1;
+					vArray[currentColumn,currentRow] = 1;
 					GOTO(1130);
 					continue;
 				case 1130:
-					if (MazeIsComplete(c, horizontal, vertical))
+					if (MazeIsComplete(_resolvedCoordinateCount, horizontalLimit, verticalLimit))
 						GOTO(1200);
 					else
 					{
-					    s++;
+					    currentRow++;
 					    GOTO(270);
 					}
 					continue;
 				case 1150:
 					z = 1;
-				    if (vArray[r, s] == 0)
+				    if (vArray[currentColumn, currentRow] == 0)
 				        GOTO(1180);
 				    else
 				        GOTO(1170);
                     continue;
 				case 1170:
-					vArray[r,s] = 3;
+					vArray[currentColumn,currentRow] = 3;
 					q = 0;
 					GOTO(210);
 					continue;
 				case 1180:
-					vArray[r,s] = 1;
+					vArray[currentColumn,currentRow] = 1;
 					q = 0;
-					r = 1;
-					s = 1;
+					currentColumn = 1;
+					currentRow = 1;
 					GOTO(260);
 					continue;
 				case 1200:
@@ -563,8 +568,29 @@ public class Amazing
 
 		}
 
-		ConstructMazeFrom(vertical, horizontal, vArray);
+		ConstructMazeFrom(verticalLimit, horizontalLimit, vArray);
 	}
+
+    private static void IncrementResolvedCoordinateCount(int column, int row)
+    {
+        //_resolvedCoordinateCount++;
+        _resolvedCoordinates[column, row] = _resolvedCoordinateCount;
+    }
+
+    private static bool EastIsUnavailable(int horizontalLimit, int currentColumn, int[,] resolvedCoordinates, int currentRow)
+    {
+        return (currentColumn == horizontalLimit) || (resolvedCoordinates[currentColumn + 1, currentRow] != 0);
+    }
+
+    private static bool NorthIsUnavailable(int currentRow, int[,] resolvedCoordinates, int currentColumn)
+    {
+        return (currentRow - 1 == 0) || (resolvedCoordinates[currentColumn, currentRow - 1] != 0);
+    }
+
+    private static bool WestIsUnavailable(int currentColumn, int[,] resolvedCoordinates, int currentRow)
+    {
+        return (currentColumn - 1 == 0) || (resolvedCoordinates[currentColumn - 1, currentRow] != 0);
+    }
 
     private static bool MazeIsComplete(int c, int h, int v)
     {
