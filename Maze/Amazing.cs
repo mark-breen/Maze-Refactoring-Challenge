@@ -125,8 +125,30 @@ public class Amazing
                             // TODO I think this condition is: if east is blocked
 					        if (EastIsUnavailable(horizontalLimit, currentColumn, _resolvedCoordinates, currentRow))
 					        {
-					            GOTO(350);
-					        }
+					            if ((currentRow != verticalLimit))
+					            {
+					                if (_resolvedCoordinates[currentColumn, currentRow + 1] != 0)
+					                {
+					                    GOTO(410);
+					                }
+					                else
+					                {
+					                    GOTO(390);
+					                }
+					            }
+					            else
+					            {
+					                if (z == 1)
+					                {
+					                    GOTO(410);
+					                }
+					                else
+					                {
+					                    q = 1;
+					                    GOTO(390);
+					                }
+					            }
+                            }
 					        else
                             {
                                 x = RandomIntFrom0To(3);
@@ -143,34 +165,6 @@ public class Amazing
                                     GOTO(1020);
                                 }
                             }
-                        }
-                    }
-					continue;
-
-                // TODO Another core method?
-				case 350:
-                    // 
-					if ((currentRow != verticalLimit))
-					{
-					    if (_resolvedCoordinates[currentColumn, currentRow + 1] != 0)
-					    {
-					        GOTO(410);
-					    }
-					    else
-					    {
-					        GOTO(390);
-					    }
-                    }
-					else
-					{
-					    if (z == 1)
-					    {
-					        GOTO(410);
-					    }
-					    else
-					    {
-					        q = 1;
-					        GOTO(390);
                         }
                     }
 					continue;
@@ -281,53 +275,126 @@ public class Amazing
 
                 // TODO Another core method?
 				case 600:
-					if (currentRow - 1 == 0)
-						GOTO(790);
+					if ((currentRow - 1 == 0) || (_resolvedCoordinates[currentColumn, currentRow - 1] != 0))
+					{
+					    if ((currentColumn == horizontalLimit) || (_resolvedCoordinates[currentColumn + 1, currentRow] != 0))
+					    {
+					        if (currentRow != verticalLimit)
+					        {
+					            if (_resolvedCoordinates[currentColumn, currentRow + 1] != 0)
+					            {
+					                GOTO(210);
+					            }
+					            else
+					            {
+					                GOTO(1090);
+					            }
+					        }
+					        else
+					        {
+					            if (z == 1)
+					            {
+					                GOTO(210);
+					            }
+					            else
+					            {
+					                q = 1;
+					                GOTO(1090);
+					            }
+					        }
+					    }
+					    else
+					    {
+					        if (currentRow != verticalLimit)
+					        {
+					            if (_resolvedCoordinates[currentColumn, currentRow + 1] != 0)
+					            {
+					                GOTO(1020);
+					            }
+					            else
+					            {
+					                x = RandomIntFrom0To(2);
+					                if (x == 1)
+					                {
+					                    GOTO(1020);
+					                }
+					                else if (x == 2)
+					                {
+					                    GOTO(1090);
+					                }
+					            }
+					        }
+					        else
+					        {
+					            if (z == 1)
+					            {
+					                GOTO(1020);
+					            }
+					            else
+					            {
+					                q = 1;
+					                GOTO(990);
+					            }
+					        }
+					    }
+                    }
 					else
-						GOTO(610);
+					{
+					    if ((currentColumn == horizontalLimit) || (_resolvedCoordinates[currentColumn + 1, currentRow] != 0))
+					    {
+					        if (currentRow != verticalLimit)
+					        {
+					            if (_resolvedCoordinates[currentColumn, currentRow + 1] != 0)
+					            {
+					                GOTO(980);
+					            }
+					            else
+					            {
+					                GOTO(760);
+					            }
+                            }
+					        else
+					        {
+					            if (z == 1)
+					            {
+					                GOTO(980);
+					            }
+					            else
+					            {
+					                q = 1;
+					                GOTO(760);
+                                }
+                            }
+                        }
+					    else
+					    {
+					        if(currentRow != verticalLimit)
+					        {
+					            if (_resolvedCoordinates[currentColumn, currentRow + 1] != 0)
+					            {
+					                GOTO(700);
+					            }
+					            else
+					            {
+					                GOTO(680);
+					            }
+                            }
+					        else
+					        {
+					            if (z == 1)
+					            {
+					                GOTO(700);
+					            }
+					            else
+					            {
+					                q = 1;
+					                GOTO(680);
+                                }
+                            }
+                        }
+                    }
 					continue;
-                
 
-				case 610:
-					if (_resolvedCoordinates[currentColumn,currentRow - 1] != 0)
-						GOTO(790);
-					else
-						GOTO(620);
-					continue;
-				case 620:
-					if (currentColumn == horizontalLimit)
-						GOTO(720);
-					else
-						GOTO(630);
-					continue;
-				case 630:
-					if (_resolvedCoordinates[currentColumn + 1,currentRow] != 0)
-						GOTO(720);
-					else
-						GOTO(640);
-					continue;
-				case 640:
-					if (currentRow != verticalLimit)
-						GOTO(670);
-					else
-						GOTO(650);
-					continue;
-				case 650:
-					if (z == 1)
-						GOTO(700);
-					else
-						GOTO(660);
-					continue;
-				case 660:
-					q = 1;
-					GOTO(680);
-					continue;
-				case 670:
-					if (_resolvedCoordinates[currentColumn,currentRow + 1] != 0)
-						GOTO(700);
-					else
-						GOTO(680);
-					continue;
 				case 680:
 					x = RandomIntFrom0To(3);
 					if (x == 1)
@@ -344,28 +411,7 @@ public class Amazing
 					else if (x == 2)
 						GOTO(1020);
 					continue;
-				case 720:
-					if (currentRow != verticalLimit)
-						GOTO(750);
-					else
-						GOTO(730);
-					continue;
-				case 730:
-					if (z == 1)
-						GOTO(980);
-					else
-						GOTO(740);
-					continue;
-				case 740:
-					q = 1;
-					GOTO(760);
-					continue;
-				case 750:
-					if (_resolvedCoordinates[currentColumn,currentRow + 1] != 0)
-						GOTO(980);
-					else
-						GOTO(760);
-					continue;
+
 				case 760:
 					x = RandomIntFrom0To(2);
 					if (x == 1)
@@ -373,71 +419,6 @@ public class Amazing
 					else if (x == 2)
 						GOTO(1090);
 					continue;
-
-				case 790:
-					if ((currentColumn == horizontalLimit) || (_resolvedCoordinates[currentColumn + 1, currentRow] != 0))
-					{
-					    if (currentRow != verticalLimit)
-					    {
-					        if (_resolvedCoordinates[currentColumn, currentRow + 1] != 0)
-					        {
-					            GOTO(210);
-					        }
-					        else
-					        {
-					            GOTO(1090);
-					        }
-                        }
-					    else
-					    {
-					        if (z == 1)
-					        {
-					            GOTO(210);
-					        }
-					        else
-					        {
-					            q = 1;
-					            GOTO(1090);
-                            }
-                        }
-                    }
-					else
-					{
-					    if (currentRow != verticalLimit)
-					    {
-					        if (_resolvedCoordinates[currentColumn, currentRow + 1] != 0)
-					        {
-					            GOTO(1020);
-					        }
-					        else
-					        {
-					            x = RandomIntFrom0To(2);
-					            if (x == 1)
-					            {
-					                GOTO(1020);
-					            }
-					            else if (x == 2)
-					            {
-					                GOTO(1090);
-					            }
-					        }
-					    }
-					    else
-					    {
-					        if (z == 1)
-					        {
-					            GOTO(1020);
-					        }
-					        else
-					        {
-					            q = 1;
-					            GOTO(990);
-					        }
-					    }
-                    }
-					continue;
-
-
 
                 // TODO Another core method?
                 case 940:
