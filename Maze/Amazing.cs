@@ -449,9 +449,6 @@ public class Amazing
 
 				case 990:
 				    _resolvedCoordinateCount++;
-                    GOTO(1000);
-					continue;
-				case 1000:
 					vArray[currentColumn,currentRow - 1] = 1;
 					currentRow--;
 					if (MazeIsComplete(horizontalLimit, verticalLimit))
@@ -491,53 +488,47 @@ public class Amazing
 
 				case 1090:
 					if (q == 1)
-						GOTO(1150);
-					else
-						GOTO(1100);
-					continue;
-				case 1100:
-                    SetResolvedCoordinateCount(currentColumn, currentRow + 1);
-				    _resolvedCoordinateCount++;
-                    if (vArray[currentColumn,currentRow] == 0)
-						GOTO(1120);
+					{
+					    z = 1;
+					    if (vArray[currentColumn, currentRow] == 0)
+					    {
+					        vArray[currentColumn, currentRow] = 1;
+					        q = 0;
+					        currentColumn = 1;
+					        currentRow = 1;
+					        GOTO(260);
+                        }
+					    else
+					    {
+					        vArray[currentColumn, currentRow] = 3;
+					        q = 0;
+					        GOTO(210);
+                        }
+                    }
 					else
 					{
-					    vArray[currentColumn, currentRow] = 3;
-					    GOTO(1130);
+					    SetResolvedCoordinateCount(currentColumn, currentRow + 1);
+					    _resolvedCoordinateCount++;
+					    if (vArray[currentColumn, currentRow] == 0)
+					    {
+					        vArray[currentColumn, currentRow] = 1;
+                        }
+					    else
+					    {
+					        vArray[currentColumn, currentRow] = 3;
+					    }
+					    if (MazeIsComplete(horizontalLimit, verticalLimit))
+					    {
+					        GOTO(1200);
+					    }
+					    else
+					    {
+					        currentRow++;
+					        GOTO(270);
+					    }
                     }
 					continue;
-				case 1120:
-					vArray[currentColumn,currentRow] = 1;
-					GOTO(1130);
-					continue;
-				case 1130:
-					if (MazeIsComplete(horizontalLimit, verticalLimit))
-						GOTO(1200);
-					else
-					{
-					    currentRow++;
-					    GOTO(270);
-					}
-					continue;
-				case 1150:
-					z = 1;
-				    if (vArray[currentColumn, currentRow] == 0)
-				        GOTO(1180);
-				    else
-				        GOTO(1170);
-                    continue;
-				case 1170:
-					vArray[currentColumn,currentRow] = 3;
-					q = 0;
-					GOTO(210);
-					continue;
-				case 1180:
-					vArray[currentColumn,currentRow] = 1;
-					q = 0;
-					currentColumn = 1;
-					currentRow = 1;
-					GOTO(260);
-					continue;
+
 				case 1200:
 					target = -1;
 					continue;
