@@ -67,7 +67,7 @@ public class Amazing
         // Is incremented for each resolved coordinate
         // Vaue is assigned to resolvedCoordinates to mark resolved coordinate
         _resolvedCoordinateCount = 1;
-        IncrementResolvedCoordinateCount(x, 1);
+        SetResolvedCoordinateCount(x, 1);
         _resolvedCoordinateCount++;
 
 		// 200
@@ -373,97 +373,92 @@ public class Amazing
 					else if (x == 2)
 						GOTO(1090);
 					continue;
+
 				case 790:
-					if (currentColumn == horizontalLimit)
-						GOTO(880);
+					if ((currentColumn == horizontalLimit) || (_resolvedCoordinates[currentColumn + 1, currentRow] != 0))
+					{
+					    if (currentRow != verticalLimit)
+					    {
+					        if (_resolvedCoordinates[currentColumn, currentRow + 1] != 0)
+					        {
+					            GOTO(210);
+					        }
+					        else
+					        {
+					            GOTO(1090);
+					        }
+                        }
+					    else
+					    {
+					        if (z == 1)
+					        {
+					            GOTO(210);
+					        }
+					        else
+					        {
+					            q = 1;
+					            GOTO(1090);
+                            }
+                        }
+                    }
 					else
-						GOTO(800);
+					{
+					    if (currentRow != verticalLimit)
+					    {
+					        if (_resolvedCoordinates[currentColumn, currentRow + 1] != 0)
+					        {
+					            GOTO(1020);
+					        }
+					        else
+					        {
+					            x = RandomIntFrom0To(2);
+					            if (x == 1)
+					            {
+					                GOTO(1020);
+					            }
+					            else if (x == 2)
+					            {
+					                GOTO(1090);
+					            }
+					        }
+					    }
+					    else
+					    {
+					        if (z == 1)
+					        {
+					            GOTO(1020);
+					        }
+					        else
+					        {
+					            q = 1;
+					            GOTO(990);
+					        }
+					    }
+                    }
 					continue;
-				case 800:
-					if (_resolvedCoordinates[currentColumn + 1,currentRow] != 0)
-						GOTO(880);
-					else
-						GOTO(810);
-					continue;
-				case 810:
-					if (currentRow != verticalLimit)
-						GOTO(840);
-					else
-						GOTO(820);
-					continue;
-				case 820:
-					if (z == 1)
-						GOTO(1020);
-					else
-						GOTO(830);
-					continue;
-				case 830:
-					q = 1;
-					GOTO(990);
-					continue;
-				case 840:
-					if (_resolvedCoordinates[currentColumn,currentRow + 1] != 0)
-						GOTO(1020);
-					else
-						GOTO(850);
-					continue;
-				case 850:
-					x = RandomIntFrom0To(2);
-					if (x == 1)
-						GOTO(1020);
-					else if (x == 2)
-						GOTO(1090);
-					continue;
-				case 880:
-					if (currentRow != verticalLimit)
-						GOTO(910);
-					else
-						GOTO(890);
-					continue;
-				case 890:
-					if (z == 1)
-						GOTO(210);
-					else
-						GOTO(900);
-					continue;
-				case 900:
-					q = 1;
-					GOTO(1090);
-					continue;
-				case 910:
-					if (_resolvedCoordinates[currentColumn,currentRow + 1] != 0)
-						GOTO(210);
-					else
-						GOTO(1090);
-					continue;
+
 
 
                 // TODO Another core method?
                 case 940:
-                    IncrementResolvedCoordinateCount(currentColumn - 1, currentRow);
-					GOTO(950);
-					continue;
-
-
-				case 950:
-				    _resolvedCoordinateCount++;
-                    vArray[currentColumn - 1,currentRow] = 2;
-					currentColumn--;
-					GOTO(960);
-					continue;
-				case 960:
-					if (MazeIsComplete(_resolvedCoordinateCount, horizontalLimit, verticalLimit))
-						GOTO(1200);
-					else
-					{
-					    q = 0;
-					    GOTO(270);
+                    SetResolvedCoordinateCount(currentColumn - 1, currentRow);
+                    _resolvedCoordinateCount++;
+                    vArray[currentColumn - 1, currentRow] = 2;
+                    currentColumn--;
+                    if (MazeIsComplete(horizontalLimit, verticalLimit))
+                    {
+                        GOTO(1200);
                     }
-					continue;
+                    else
+                    {
+                        q = 0;
+                        GOTO(270);
+                    }
+                    continue;
 
 			    // TODO Another core method?
                 case 980:
-                    IncrementResolvedCoordinateCount(currentColumn, currentRow - 1);
+                    SetResolvedCoordinateCount(currentColumn, currentRow - 1);
 					GOTO(990);
 					continue;
 
@@ -474,8 +469,10 @@ public class Amazing
 				case 1000:
 					vArray[currentColumn,currentRow - 1] = 1;
 					currentRow--;
-					if (MazeIsComplete(_resolvedCoordinateCount, horizontalLimit, verticalLimit))
-						GOTO(1200);
+					if (MazeIsComplete(horizontalLimit, verticalLimit))
+					{
+					    GOTO(1200);
+					}
 					else
 					{
 					    q = 0;
@@ -486,7 +483,7 @@ public class Amazing
 
                 // TODO Another core method?
                 case 1020:
-                    IncrementResolvedCoordinateCount(currentColumn + 1, currentRow);
+                    SetResolvedCoordinateCount(currentColumn + 1, currentRow);
                     _resolvedCoordinateCount++;
                     if (vArray[currentColumn,currentRow] == 0)
 						GOTO(1050);
@@ -507,7 +504,7 @@ public class Amazing
 					GOTO(1070);
 					continue;
 				case 1070:
-					if (MazeIsComplete(_resolvedCoordinateCount, horizontalLimit, verticalLimit))
+					if (MazeIsComplete(horizontalLimit, verticalLimit))
 						GOTO(1200);
 					else
 						GOTO(600);
@@ -519,7 +516,7 @@ public class Amazing
 						GOTO(1100);
 					continue;
 				case 1100:
-                    IncrementResolvedCoordinateCount(currentColumn, currentRow + 1);
+                    SetResolvedCoordinateCount(currentColumn, currentRow + 1);
 				    _resolvedCoordinateCount++;
                     if (vArray[currentColumn,currentRow] == 0)
 						GOTO(1120);
@@ -534,7 +531,7 @@ public class Amazing
 					GOTO(1130);
 					continue;
 				case 1130:
-					if (MazeIsComplete(_resolvedCoordinateCount, horizontalLimit, verticalLimit))
+					if (MazeIsComplete(horizontalLimit, verticalLimit))
 						GOTO(1200);
 					else
 					{
@@ -571,7 +568,7 @@ public class Amazing
 		ConstructMazeFrom(verticalLimit, horizontalLimit, vArray);
 	}
 
-    private static void IncrementResolvedCoordinateCount(int column, int row)
+    private static void SetResolvedCoordinateCount(int column, int row)
     {
         //_resolvedCoordinateCount++;
         _resolvedCoordinates[column, row] = _resolvedCoordinateCount;
@@ -592,9 +589,9 @@ public class Amazing
         return (currentColumn - 1 == 0) || (resolvedCoordinates[currentColumn - 1, currentRow] != 0);
     }
 
-    private static bool MazeIsComplete(int c, int h, int v)
+    private static bool MazeIsComplete(int h, int v)
     {
-        return c == h * v + 1;
+        return _resolvedCoordinateCount == h * v + 1;
     }
 
     private static void ConstructMazeFrom(int v, int h, int[,] vArray)
