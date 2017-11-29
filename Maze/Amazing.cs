@@ -101,9 +101,13 @@ public class Amazing
                     continue;
 				case 260:
 					if (_resolvedCoordinates[currentColumn,currentRow] == 0)
-						GOTO(210);
+					{
+					    GOTO(210);
+					}
 					else
-						GOTO(270);
+					{
+					    GOTO(270);
+					}
 					continue;
 
                 // TODO Extract method for this case
@@ -194,39 +198,60 @@ public class Amazing
 
                 // TODO Another core method?
 				case 430:
-					if (currentColumn == horizontalLimit)
-						GOTO(530);
+					if ((currentColumn == horizontalLimit) || (_resolvedCoordinates[currentColumn + 1, currentRow] != 0))
+					{
+					    if (currentRow != verticalLimit)
+					    {
+					        if (_resolvedCoordinates[currentColumn, currentRow + 1] != 0)
+					        {
+					            GOTO(940);
+					        }
+					        else
+					        {
+					            GOTO(570);
+					        }
+                        }
+					    else
+					    {
+					        if (z == 1)
+					        {
+					            GOTO(940);
+					        }
+					        else
+					        {
+					            q = 1;
+					            GOTO(570);
+                            }
+                        }
+                    }
 					else
-						GOTO(440);
+					{
+					    if (currentRow != verticalLimit)
+					    {
+					        if (_resolvedCoordinates[currentColumn, currentRow + 1] != 0)
+					        {
+					            GOTO(510);
+					        }
+					        else
+					        {
+					            GOTO(490);
+					        }
+                        }
+					    else
+					    {
+					        if (z == 1)
+					        {
+					            GOTO(510);
+					        }
+					        else
+					        {
+					            q = 1;
+					            GOTO(490);
+                            }
+                        }
+                    }
 					continue;
-				case 440:
-					if (_resolvedCoordinates[currentColumn + 1,currentRow] != 0)
-						GOTO(530);
-					else
-						GOTO(450);
-					continue;
-				case 450:
-					if (currentRow != verticalLimit)
-						GOTO(480);
-					else
-						GOTO(460);
-					continue;
-				case 460:
-					if (z == 1)
-						GOTO(510);
-					else
-						GOTO(470);
-					continue;
-				case 470:
-					q = 1;
-					GOTO(490);
-					continue;
-				case 480:
-					if (_resolvedCoordinates[currentColumn,currentRow + 1] != 0)
-						GOTO(510);
-					else
-						GOTO(490);
-					continue;
+
 				case 490:
 					x = RandomIntFrom0To(3);
 					if (x == 1)
@@ -243,28 +268,7 @@ public class Amazing
 					else if (x == 2)
 						GOTO(1020);
 					continue;
-				case 530:
-					if (currentRow != verticalLimit)
-						GOTO(560);
-					else
-						GOTO(540);
-					continue;
-				case 540:
-					if (z == 1)
-						GOTO(940);
-					else
-						GOTO(550);
-					continue;
-				case 550:
-					q = 1;
-					GOTO(570);
-					continue;
-				case 560:
-					if (_resolvedCoordinates[currentColumn,currentRow + 1] != 0)
-						GOTO(940);
-					else
-						GOTO(570);
-					continue;
+
 				case 570:
 					x = RandomIntFrom0To(2);
 					if (x == 1)
@@ -467,29 +471,24 @@ public class Amazing
                     SetResolvedCoordinateCount(currentColumn + 1, currentRow);
                     _resolvedCoordinateCount++;
                     if (vArray[currentColumn,currentRow] == 0)
-						GOTO(1050);
+                    {
+                        vArray[currentColumn, currentRow] = 2;
+                    }
 					else
-						GOTO(1040);
-					continue;
-                
-				case 1040:
-					vArray[currentColumn,currentRow] = 3;
-					GOTO(1060);
-					continue;
-				case 1050:
-					vArray[currentColumn,currentRow] = 2;
-					GOTO(1060);
-					continue;
-				case 1060:
+                    {
+                        vArray[currentColumn, currentRow] = 3;
+                    }
 					currentColumn++;
-					GOTO(1070);
-					continue;
-				case 1070:
 					if (MazeIsComplete(horizontalLimit, verticalLimit))
-						GOTO(1200);
+					{
+					    GOTO(1200);
+					}
 					else
-						GOTO(600);
+					{
+					    GOTO(600);
+					}
 					continue;
+
 				case 1090:
 					if (q == 1)
 						GOTO(1150);
