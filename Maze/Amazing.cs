@@ -198,7 +198,7 @@ public class Amazing
 
                 // TODO Another core method?
 				case 430:
-					if ((currentColumn == horizontalLimit) || (_resolvedCoordinates[currentColumn + 1, currentRow] != 0))
+					if (EastIsUnavailable(horizontalLimit, currentColumn, _resolvedCoordinates, currentRow))
 					{
 					    if (currentRow != verticalLimit)
 					    {
@@ -261,6 +261,7 @@ public class Amazing
 					else if (x == 3)
 						GOTO(1090);
 					continue;
+
 				case 510:
 					x = RandomIntFrom0To(2);
 					if (x == 1)
@@ -279,9 +280,9 @@ public class Amazing
 
                 // TODO Another core method?
 				case 600:
-					if ((currentRow - 1 == 0) || (_resolvedCoordinates[currentColumn, currentRow - 1] != 0))
+					if (NorthIsUnavailable(currentRow, _resolvedCoordinates, currentColumn))
 					{
-					    if ((currentColumn == horizontalLimit) || (_resolvedCoordinates[currentColumn + 1, currentRow] != 0))
+					    if (EastIsUnavailable(horizontalLimit, currentColumn, _resolvedCoordinates, currentRow))
 					    {
 					        if (currentRow != verticalLimit)
 					        {
@@ -344,7 +345,7 @@ public class Amazing
                     }
 					else
 					{
-					    if ((currentColumn == horizontalLimit) || (_resolvedCoordinates[currentColumn + 1, currentRow] != 0))
+					    if (EastIsUnavailable(horizontalLimit, currentColumn, _resolvedCoordinates, currentRow))
 					    {
 					        if (currentRow != verticalLimit)
 					        {
