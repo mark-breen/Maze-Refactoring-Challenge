@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ApprovalTests;
 using ApprovalTests.Namers;
@@ -9,6 +10,16 @@ namespace Tests.GoldenMasters
 {
     internal class GoldenMasterTests
     {
+        private static IEnumerable<AmazingTestScenario> InvalidMazes
+        {
+            get
+            {
+                yield return new AmazingTestScenario(0, 0, 0);
+                yield return new AmazingTestScenario(0, 0, 1);
+                yield return new AmazingTestScenario(0, 1, 0);
+            }
+        }
+        
         private static IEnumerable<AmazingTestScenario> ValidMazes
         {
             get
@@ -42,30 +53,28 @@ namespace Tests.GoldenMasters
             }
         }
 
+        [Test, TestCaseSource("InvalidMazes")]
+        public void KnownInvalidMazesBehaviour(AmazingTestScenario testScenario)
+        {
+            try
+            {
+                AmazingWrapper.GetMazeFor(testScenario);
+                Assert.Fail();
+            }
+            catch
+            {
+                Assert.Pass();
+            }
+        }
+
         [UseReporter(typeof(DiffReporter))]
         [Test, TestCaseSource("ValidMazes")]
-        public void AssertOnGoldenTemplates(AmazingTestScenario testScenario)
+        public void KnownValidMazesBehaviour(AmazingTestScenario testScenario)
         {
             using(ApprovalResults.ForScenario($"Random seed: {testScenario.RandomSeed}; Width: {testScenario.Width}; Height: {testScenario.Height}"))
             {
-                Approvals.Verify(AmazingWrapper.GetMazeFor(testScenario.RandomSeed, testScenario.Width, testScenario.Height));
+                Approvals.Verify(AmazingWrapper.GetMazeFor(testScenario));
             }
-        }
-        
-        internal class AmazingTestScenario
-        {
-            public AmazingTestScenario(int randomSeed, int width, int height)
-            {
-                RandomSeed = randomSeed;
-                Width = width;
-                Height = height;
-            }
-            
-            public int RandomSeed { get; }
-
-            public int Width { get; }
-
-            public int Height { get; }
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using NUnit.Framework;
+using Tests.GoldenMasters;
 using Tests.Helpers;
 
 namespace Tests
@@ -53,7 +54,7 @@ I     I  I     I     I              I        I
 I                 I  I     I     I           I 
 :--:--:--:--:--:--:--:--:--:--:--:  :--:--:--:
 ";
-			Assert.AreEqual(expected, AmazingWrapper.GetMazeFor(0, 15, 20), "Should have the maze that was expected");
+			Assert.AreEqual(expected, AmazingWrapper.GetMazeFor(new AmazingTestScenario(0, 15, 20)), "Should have the maze that was expected");
 		}
 
 		[Test]
@@ -72,7 +73,7 @@ I  I     I  I
 I        I  I 
 :--:--:--:  :
 ";
-			Assert.AreEqual(expected, AmazingWrapper.GetMazeFor(100, 4, 5), "Should have the maze that was expected");
+			Assert.AreEqual(expected, AmazingWrapper.GetMazeFor(new AmazingTestScenario(100, 4, 5)), "Should have the maze that was expected");
 		}
 	}
 }

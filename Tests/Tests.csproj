@@ -130,6 +130,7 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GoldenMasters\AmazingTestScenario.cs" />
     <Compile Include="GoldenMasters\GoldenMasterTests.cs" />
     <Compile Include="Helpers\AmazingWrapper.cs" />
   </ItemGroup>
