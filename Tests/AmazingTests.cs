@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using NUnit.Framework;
 
 namespace Tests
@@ -8,7 +7,7 @@ namespace Tests
 	public class AmazingTests
 	{
 		[Test]
-		public void Seed0size15x20() 
+		public void Seed0Size15X20() 
 		{
 			String expected = @"Amazing - Copyright by Creative Computing, Morristown, NJ
 :--:--:--:--:--:--:--:--:--:--:  :--:--:--:--:
@@ -61,7 +60,7 @@ I                 I  I     I     I           I
 		}
 
 		[Test]
-		public void Seed100size4x5() 
+		public void Seed100Size4X5() 
 		{
 			String expected = @"Amazing - Copyright by Creative Computing, Morristown, NJ
 :--:--:--:  :
