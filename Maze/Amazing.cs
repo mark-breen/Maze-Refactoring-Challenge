@@ -507,7 +507,7 @@ public class Amazing
 					continue;
 				case 960:
 					if (c == h * v + 1)
-						GOTO(1200);
+						MazeConstructionComplete();
 					else
 						GOTO(970);
 					continue;
@@ -527,7 +527,7 @@ public class Amazing
 					vArray[r,s - 1] = 1;
 					s--;
 					if (c == h * v + 1)
-						GOTO(1200);
+						MazeConstructionComplete();
 					else
 						GOTO(1010);
 					continue;
@@ -560,7 +560,7 @@ public class Amazing
 					continue;
 				case 1070:
 					if (c == h * v + 1)
-						GOTO(1200);
+						MazeConstructionComplete();
 					else
 						GOTO(1080);
 					continue;
@@ -592,7 +592,7 @@ public class Amazing
 				case 1130:
 					s++;
 					if (c == v * h + 1)
-						GOTO(1200);
+						MazeConstructionComplete();
 					else
 						GOTO(1140);
 					continue;
@@ -623,9 +623,6 @@ public class Amazing
 					continue;
 				case 1190:
 					GOTO(210);
-					continue;
-				case 1200:
-					target = -1;
 					continue;
 			}
 
@@ -660,5 +657,10 @@ public class Amazing
 			print(":");    // 1360
 			println();
 		}
+	}
+
+	private static void MazeConstructionComplete()
+	{
+		target = -1;
 	}
 }
