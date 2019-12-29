@@ -479,19 +479,13 @@ public class Amazing
 					continue;
 				case 900:
 					q = 1;
-					GOTO(920);
+					GOTO(1090);
 					continue;
 				case 910:
 					if (wArray[r,s + 1] != 0)
 						GOTO(210);
 					else
-						GOTO(920);
-					continue;
-				case 920:
-					GOTO(1090);
-					continue;
-				case 930:
-					GOTO(210);
+						GOTO(1090);
 					continue;
 				case 940:
 					wArray[r - 1,s] = c;
