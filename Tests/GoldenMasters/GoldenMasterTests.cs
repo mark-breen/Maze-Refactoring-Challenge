@@ -24,6 +24,7 @@ namespace Tests.GoldenMasters
             get
             {
                 yield return new AmazingTestScenario(0,1, 1);
+                yield return new AmazingTestScenario(0,5, 5);
                 yield return new AmazingTestScenario(0,5, 20);
                 yield return new AmazingTestScenario(0,10, 20);
                 yield return new AmazingTestScenario(0,15, 20);
@@ -33,6 +34,7 @@ namespace Tests.GoldenMasters
                 yield return new AmazingTestScenario(0,160,160);
                 
                 yield return new AmazingTestScenario(1,1, 1);
+                yield return new AmazingTestScenario(1,5, 5);
                 yield return new AmazingTestScenario(1,5, 20);
                 yield return new AmazingTestScenario(1,10, 20);
                 yield return new AmazingTestScenario(1,15, 20);
@@ -42,6 +44,7 @@ namespace Tests.GoldenMasters
                 yield return new AmazingTestScenario(1,160,160);
                 
                 yield return new AmazingTestScenario(10,1, 1);
+                yield return new AmazingTestScenario(10,5, 5);
                 yield return new AmazingTestScenario(10,5, 20);
                 yield return new AmazingTestScenario(10,10, 20);
                 yield return new AmazingTestScenario(10,15, 20);
