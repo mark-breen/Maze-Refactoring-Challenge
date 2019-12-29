@@ -560,10 +560,7 @@ public class Amazing
 					if (c == horizontal * vertical + 1)
 						MazeConstructionComplete();
 					else
-						GOTO(1080);
-					continue;
-				case 1080:
-					GOTO(600);
+						GOTO(600);
 					continue;
 				case 1090:
 					if (q == 1)
