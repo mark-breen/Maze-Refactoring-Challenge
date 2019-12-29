@@ -42,22 +42,20 @@ public class Amazing
 		print("Amazing - Copyright by Creative Computing, Morristown, NJ");
 		println();
 
-		int h = horizontal;
-		int v = vertical;
-		if (h == 1 || v == 1) return;
+		if (horizontal == 1 || vertical == 1) return;
 
-		int[,] wArray = new int[h + 1,v + 1];
+		int[,] wArray = new int[horizontal + 1,vertical + 1];
 		
 
-		int[,] vArray = new int[h + 1,v + 1];
+		int[,] vArray = new int[horizontal + 1,vertical + 1];
 		
 
 		int q = 0;
 		int z = 0;
-		int x = rnd(h);
+		int x = rnd(horizontal);
 
 		// 130:170
-		for (int i = 1; i <= h; i++) 
+		for (int i = 1; i <= horizontal; i++) 
 		{
 			if (i == x)
 				print(":  ");
@@ -83,13 +81,13 @@ public class Amazing
 			switch (target) 
 			{
 				case 210:
-					if (r != h)
+					if (r != horizontal)
 						GOTO(250);
 					else
 						GOTO(220);
 					continue;
 				case 220:
-					if (s != v)
+					if (s != vertical)
 						GOTO(240);
 					else
 						GOTO(230);
@@ -139,7 +137,7 @@ public class Amazing
 						GOTO(310);
 					continue;
 				case 310:
-					if (r == h)
+					if (r == horizontal)
 						GOTO(350);
 					else
 						GOTO(320);
@@ -165,7 +163,7 @@ public class Amazing
 						GOTO(350);
 					continue;
 				case 350:
-					if (s != v)
+					if (s != vertical)
 						GOTO(380);
 					else
 						GOTO(360);
@@ -213,7 +211,7 @@ public class Amazing
 						GOTO(430);
 					continue;
 				case 430:
-					if (r == h)
+					if (r == horizontal)
 						GOTO(530);
 					else
 						GOTO(440);
@@ -225,7 +223,7 @@ public class Amazing
 						GOTO(450);
 					continue;
 				case 450:
-					if (s != v)
+					if (s != vertical)
 						GOTO(480);
 					else
 						GOTO(460);
@@ -273,7 +271,7 @@ public class Amazing
 						GOTO(530);
 					continue;
 				case 530:
-					if (s != v)
+					if (s != vertical)
 						GOTO(560);
 					else
 						GOTO(540);
@@ -322,7 +320,7 @@ public class Amazing
 						GOTO(620);
 					continue;
 				case 620:
-					if (r == h)
+					if (r == horizontal)
 						GOTO(720);
 					else
 						GOTO(630);
@@ -334,7 +332,7 @@ public class Amazing
 						GOTO(640);
 					continue;
 				case 640:
-					if (s != v)
+					if (s != vertical)
 						GOTO(670);
 					else
 						GOTO(650);
@@ -382,7 +380,7 @@ public class Amazing
 						GOTO(720);
 					continue;
 				case 720:
-					if (s != v)
+					if (s != vertical)
 						GOTO(750);
 					else
 						GOTO(730);
@@ -419,7 +417,7 @@ public class Amazing
 					GOTO(980);
 					continue;
 				case 790:
-					if (r == h)
+					if (r == horizontal)
 						GOTO(880);
 					else
 						GOTO(800);
@@ -431,7 +429,7 @@ public class Amazing
 						GOTO(810);
 					continue;
 				case 810:
-					if (s != v)
+					if (s != vertical)
 						GOTO(840);
 					else
 						GOTO(820);
@@ -468,7 +466,7 @@ public class Amazing
 					GOTO(1020);
 					continue;
 				case 880:
-					if (s != v)
+					if (s != vertical)
 						GOTO(910);
 					else
 						GOTO(890);
@@ -506,7 +504,7 @@ public class Amazing
 					GOTO(960);
 					continue;
 				case 960:
-					if (c == h * v + 1)
+					if (c == horizontal * vertical + 1)
 						MazeConstructionComplete();
 					else
 						GOTO(970);
@@ -526,7 +524,7 @@ public class Amazing
 				case 1000:
 					vArray[r,s - 1] = 1;
 					s--;
-					if (c == h * v + 1)
+					if (c == horizontal * vertical + 1)
 						MazeConstructionComplete();
 					else
 						GOTO(1010);
@@ -559,7 +557,7 @@ public class Amazing
 					GOTO(1070);
 					continue;
 				case 1070:
-					if (c == h * v + 1)
+					if (c == horizontal * vertical + 1)
 						MazeConstructionComplete();
 					else
 						GOTO(1080);
@@ -591,7 +589,7 @@ public class Amazing
 					continue;
 				case 1130:
 					s++;
-					if (c == v * h + 1)
+					if (c == vertical * horizontal + 1)
 						MazeConstructionComplete();
 					else
 						GOTO(1140);
@@ -629,11 +627,11 @@ public class Amazing
 		}
 
 		// 1200:
-		for (int j = 1; j <= v; j++) 
+		for (int j = 1; j <= vertical; j++) 
 		{
 			print("I");        // 1210
 
-			for (int i = 1; i <= h; i++) 
+			for (int i = 1; i <= horizontal; i++) 
 			{
 				if (vArray[i,j] >= 2)
 					print("   ");  // 1240
@@ -644,7 +642,7 @@ public class Amazing
 			print(" ");   // 1280
 			println();
 
-			for (int i = 1; i <= h; i++) 
+			for (int i = 1; i <= horizontal; i++) 
 			{
 				if (vArray[i,j] == 0)
 					print(":--");   // 1300, 1340
